@@ -1,2 +1,2 @@
-gb_game
-=======
+A game built in Processing
+==========================
