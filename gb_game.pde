@@ -42,9 +42,9 @@ void draw() {
 				ghost_[i].updateCounter();
 				ghost_[i].deathWatch();
 			}
-		healthBar();
 		}
-		if(deathToll == 3) {
+		healthBar();
+		if(deathToll == ghost_.length) {
 			textSize(50);
 			textAlign(CENTER, CENTER);
 			text("VICTORY!", width/2, height/2);
