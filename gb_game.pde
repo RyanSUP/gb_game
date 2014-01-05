@@ -1,7 +1,7 @@
 Buster gB;
 Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
-String difficulty = "hard"; // testing, easy, hard
+String difficulty = "testing"; // testing, easy, hard
 int level = 1;
 
 void setup() {
@@ -43,12 +43,19 @@ void draw() {
 				ghost_[i].deathWatch();
 			}
 		}
+<<<<<<< HEAD
 		healthBar();
 		if(deathToll == ghost_.length) {
+=======
+
+		// If all enemies got killed
+		if(deathToll == ghost_.length) {
+			ghost_ = new Ghost[6];
+			level += 1;
+>>>>>>> be4128b19793e1fc24ef6bf20a3f305cd245e8f3
 			textSize(50);
 			textAlign(CENTER, CENTER);
-			text("VICTORY!", width/2, height/2);
-			//println("You won!");
+			text("LEVEL "+level, width/2, height/2);
 		}
 
 	}
