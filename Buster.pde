@@ -1,6 +1,8 @@
 class Buster {
 	float center, x, y, w, h;
 	boolean hasTarget = false;
+	boolean alive = true;
+	int health = 10;
 	Ghost currentTarget = null;
 	// ---Data ^^
 	Buster() {
@@ -10,6 +12,12 @@ class Buster {
 		y = height - h;
 		center = x + w/2;
 	} // ----constructor
+	void hit() {
+		health -= 1;
+		if (health <= 0) {
+			alive = false;
+		}
+	}
 	void move() {
 		if(gameController.isGoingLeft()) {
 			x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
