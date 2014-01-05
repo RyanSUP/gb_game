@@ -108,6 +108,9 @@ class Ghost {
 			if (ooze.y > height) {
 				ooze = null;
 			}
+			else if(ooze.busterCheck()) {
+				ooze = null;
+			}
 			// if the ooze didn't fall to the ground yet then update it
 			else {
 				ooze.move();
