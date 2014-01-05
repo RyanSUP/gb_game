@@ -46,8 +46,8 @@ class Ghost {
 	void move() {
 		ry = random(-speed, speed); // change speed with G
 		rx = random(-speed, speed); // ^^
-		x = x + rx; //gets a random value from ry and rx, addes it to the x coordinate of ghost
-		y = y + ry; // ^ same with Y
+		x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost
+		y = constrain(y + ry, 0, height - gB.h - 100); // ^ same with Y
 		centerX = x + 25;
 		centerY = y + 25;
 	}
