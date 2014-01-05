@@ -9,12 +9,13 @@ void setup() {
 	frameRate(60);
 	size(500, 500);
 	gB = new Buster();
-			for(int i = 0; i < ghost_.length; i++) {
+	for(int i = 0; i < ghost_.length; i++) {
 		ghost_[i] = new Ghost();
 	}
 }
 
 void draw() {
+	//frameRate(10);
 	int deathToll = 0;
 	background(255);
 
@@ -41,9 +42,10 @@ void draw() {
 				ghost_[i].updateCounter();
 				ghost_[i].deathWatch();
 			}
+		healthBar();
 		}
 		if(deathToll == 3) {
-			textSize(20);
+			textSize(50);
 			textAlign(CENTER, CENTER);
 			text("VICTORY!", width/2, height/2);
 			//println("You won!");
@@ -51,7 +53,7 @@ void draw() {
 
 	}
 	else {
-		textSize(20);
+		textSize(50);
 		textAlign(CENTER, CENTER);
 		text("DEFEAT!", width/2, height/2);
 	}
@@ -62,4 +64,10 @@ void keyPressed() {
 }
 void keyReleased() {
     gameController.handleKeyReleased();
+}
+void healthBar() {
+	fill(100, 255, 100);
+	noStroke();
+	rect(0, 0, gB.health * 20, 20);
+	//println(gB.health);
 }

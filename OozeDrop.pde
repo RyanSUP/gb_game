@@ -1,5 +1,5 @@
 class OozeDrop {
-	float x, y, rx, ry, w, speed, centerX, centerY, gravity;
+	float x, y, rx, ry, w, speed, gravity;
 	OozeDrop (float parentX, float parentY) {
 		x = parentX;
 		y = parentY;
@@ -16,11 +16,9 @@ class OozeDrop {
 	void move() {
 		speed = speed + gravity;
 		y = y + speed;
-		centerX = x + w / 2;
-		centerY = y + w / 2;
 	}
 	boolean busterCheck() {
-		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y && y < gB.y + gB.w) {
+		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y) {
 			//hasMouse = true;
 			println("within x range of buster");
 			gB.hit();
@@ -30,4 +28,4 @@ class OozeDrop {
 			return false;
 		}
 	}
-}
+}//

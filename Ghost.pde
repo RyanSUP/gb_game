@@ -115,7 +115,6 @@ class Ghost {
 			else {
 				ooze.move();
 				ooze.display();
-				ooze.busterCheck();
 			}
 		}
 	}
