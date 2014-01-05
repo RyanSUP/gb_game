@@ -9,7 +9,7 @@ void setup() {
 	frameRate(60);
 	size(500, 500);
 	gB = new Buster();
-	for(int i = 0; i < ghost_.length; i++) {
+			for(int i = 0; i < ghost_.length; i++) {
 		ghost_[i] = new Ghost();
 	}
 }
