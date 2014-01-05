@@ -20,7 +20,7 @@ class OozeDrop {
 		centerY = y + w / 2;
 	}
 	void busterCheck() {
-		if(x + w >= gB.x && x + w <= gB.x + gB.w && y + w >= gB.y && y < gB.y + gB.w) {
+		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y && y < gB.y + gB.w) {
 			//hasMouse = true;
 			println("within x range of buster");
 		}
