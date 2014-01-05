@@ -8,10 +8,7 @@ void setup() {
 	smooth();
 	frameRate(60);
 	size(500, 500);
-	gB = new Buster();
-	for(int i = 0; i < ghost_.length; i++) {
-		ghost_[i] = new Ghost();
-	}
+	startLevel(level);
 }
 
 void draw() {
@@ -48,11 +45,7 @@ void draw() {
 
 		// If all enemies got killed
 		if(deathToll == ghost_.length) {
-			level += 1;
-			ghost_ = new Ghost[ghost_.length * 2];
-			for(int i = 0; i < ghost_.length; i++) {
-				ghost_[i] = new Ghost();
-			}
+			startLevel(level+1);
 			textSize(50);
 			textAlign(CENTER, CENTER);
 			text("LEVEL "+level, width/2, height/2);
@@ -69,9 +62,29 @@ void draw() {
 void keyPressed() {
     gameController.handleKeyPress();
 }
+
 void keyReleased() {
     gameController.handleKeyReleased();
 }
+
+void startLevel(int levelNumber) {
+
+	level = levelNumber;
+	gB = new Buster();
+
+	if (levelNumber == 1) {
+		ghost_ = new Ghost[1];
+	}
+	else if (levelNumber >= 2) {
+		ghost_ = new Ghost[2];
+	}
+
+	for(int i = 0; i < ghost_.length; i++) {
+		ghost_[i] = new Ghost();
+	}
+
+}
+
 void healthBar() {
 	fill(100, 255, 100);
 	noStroke();
