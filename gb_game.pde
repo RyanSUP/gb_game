@@ -42,13 +42,17 @@ void draw() {
 				ghost_[i].updateCounter();
 				ghost_[i].deathWatch();
 			}
-		healthBar();
 		}
+
+		healthBar();
 
 		// If all enemies got killed
 		if(deathToll == ghost_.length) {
-			ghost_ = new Ghost[6];
 			level += 1;
+			ghost_ = new Ghost[ghost_.length * 2];
+			for(int i = 0; i < ghost_.length; i++) {
+				ghost_[i] = new Ghost();
+			}
 			textSize(50);
 			textAlign(CENTER, CENTER);
 			text("LEVEL "+level, width/2, height/2);
