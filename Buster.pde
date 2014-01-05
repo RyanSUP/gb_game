@@ -13,11 +13,11 @@ class Buster {
 	void move() {
 		if(keyPressed) {
 			if(key == 'a' || key == 'A') {
-				x -= 3; // move ghost buster left if A is pressed
+				x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
 				center = x + 25; // update center position
 			}
 			if(key == 'd' || key == 'D') {
-				x += 3; // move ghost buster right if D is pressed
+				x = constrain(x + 3, 0, width - w); // move ghost buster right if D is pressed
 				center = x + 25; // update center position
 			}
 		}
