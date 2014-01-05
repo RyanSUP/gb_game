@@ -23,10 +23,11 @@ class OozeDrop {
 		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y && y < gB.y + gB.w) {
 			//hasMouse = true;
 			println("within x range of buster");
+			gB.hit();
 			return true;
 		}
 		else {
 			return false;
 		}
 	}
-}//
+}
