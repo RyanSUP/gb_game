@@ -1,4 +1,5 @@
 Buster gB;
+Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
 String difficulty = "hard"; // testing, easy, hard
 int level = 1;
@@ -45,4 +46,11 @@ void draw() {
 		text("VICTORY!", width/2, height/2);
 		//println("You won!");
 	}
+}
+
+void keyPressed() {
+    gameController.handleKeyPress();
+}
+void keyReleased() {
+    gameController.handleKeyReleased();
 }

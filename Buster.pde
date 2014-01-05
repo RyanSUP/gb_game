@@ -11,15 +11,13 @@ class Buster {
 		center = x + w/2;
 	} // ----constructor
 	void move() {
-		if(keyPressed) {
-			if(key == 'a' || key == 'A') {
-				x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
-				center = x + 25; // update center position
-			}
-			if(key == 'd' || key == 'D') {
-				x = constrain(x + 3, 0, width - w); // move ghost buster right if D is pressed
-				center = x + 25; // update center position
-			}
+		if(gameController.isGoingLeft()) {
+			x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
+			center = x + 25; // update center position
+			}			
+		if(gameController.isGoingRight()) {
+			x = constrain(x + 3, 0, width - w); // move ghost buster right if D is pressed
+			center = x + 25; // update center position
 		}
 	}
 	void display() {
