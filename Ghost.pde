@@ -3,7 +3,7 @@ class Ghost {
 	float x, y, rx, ry, w, speed, centerX, centerY, counter, hoverLimit, spawnCheck;
 	boolean hasMouse = false;
 	boolean dead = false;
-	boolean spawnSwitch = false;
+	boolean spawnSwitch = false;	
 	OozeDrop ooze;
 	// --- data
 	Ghost() {
