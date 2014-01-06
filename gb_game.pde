@@ -5,9 +5,12 @@ Minim minim;
 Buster gB;
 Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
-String difficulty = "easy"; // testing, easy, hard
+BluePower shield;
+int shieldStr = 0; // strength of shield
+String difficulty = "testing"; // testing, easy, hard
 int level = 1;
-
+boolean blueSpawn = false;
+float powerNumber;
 void setup() {
 	smooth();
 	frameRate(60);
@@ -32,6 +35,7 @@ void draw() {
 		for(int i = 0; i < ghost_.length; i++) {
 			if(ghost_[i].dead) {
 				ghost_[i].updateOoze();
+				ghost_[i].updateDeathOoze();
 				ghost_[i].kill();
 				deathToll += 1;
 			}
@@ -49,7 +53,10 @@ void draw() {
 		}
 		levelCount();
 		healthBar();
-
+		shieldBar();
+		CheckSpawnPower();
+		SpawnBluePower();
+		movePower();		
 		// If all enemies got killed
 		if(deathToll == ghost_.length) {
 			startLevel(level+1);
@@ -99,9 +106,50 @@ void healthBar() {
 	rect(-2, -2, 200, 20);
 	//println(gB.health);
 }
+void shieldBar() {
+	fill(100,100,255, 130);
+	noStroke();
+	rect(0,0, shieldStr * 20, 17);
+}
 void levelCount() {
 	fill(0);
 	textSize(20);
 	textAlign(CENTER, CENTER);
 	text("LEVEL "+level, width - 50, 10);
+}
+void CheckSpawnPower() {
+	powerNumber = random(1, 1000);
+	if(powerNumber >= 150 && powerNumber <= 160) {
+		blueSpawn = true;
+	}
+	else {
+		blueSpawn = false;
+	}
+}
+void SpawnBluePower() {
+	if(blueSpawn && shield == null){
+		shield = new BluePower();
+	}
+}
+void movePower(){
+		if(shield != null) {
+		// if the ooze fell past the ground get rid of it so we can make a new one
+		if (shield.y > height) {
+			shield = null;
+		}
+		else if(shield.checkForBuster()) {
+			if(shieldStr < gB.health) {
+				shieldStr = shieldStr + 1;
+			}
+			else {
+				shieldStr = shieldStr;
+			}
+			shield = null;
+		}
+		// if the ooze didn't fall to the ground yet then update it
+		else {
+			shield.move();
+			shield.display();
+		}
+	}
 }

@@ -3,9 +3,9 @@ class OozeDrop {
 	OozeDrop (float parentX, float parentY) {
 		x = parentX;
 		y = parentY;
-		w = 15;
-		speed = 2;
-		gravity = .05;
+		w = random(15, 25);
+		speed = w/4;
+		gravity = .03;
 	}
 	void display() {
 		noStroke();

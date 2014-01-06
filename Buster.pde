@@ -18,6 +18,12 @@ class Buster {
 	void hit() {
 		hitSFX[int(random(2))].trigger();
 		health -= 1;
+		if(shieldStr > 0) {
+			shieldStr = shieldStr - 1;
+		}
+		else {
+			health -= 1;
+		}
 		if (health <= 0) {
 			alive = false;
 		}

@@ -7,6 +7,7 @@ class Ghost {
 	OozeDrop ooze;
 	AudioSample [] oozeSFX = new AudioSample[3];
 	AudioSample deathScream;
+	OozeDrop [] finalOoze = new OozeDrop[5];
 	// --- data
 	Ghost() {
 		spawnCheck = random(1, 100);
@@ -86,6 +87,7 @@ class Ghost {
 		if(counter >= hoverLimit) {
 			dead = true;
 			deathScream.trigger();
+			spawnDeathOoze();
 			println("You killed a ghost!");
 		}
 	}
@@ -93,8 +95,8 @@ class Ghost {
 		hasMouse = false;
 	}
 	void updateSpawn() { // checks through the random spawn number
-		spawnCheck = random(1, 100); // random spawn cycles through numbers 1 - 100
-		if(spawnCheck >= 50 && spawnCheck <= 60) {  // if the number is between 50 and 60
+		spawnCheck = random(0, 200); // random spawn cycles through numbers 1 - 100
+		if(spawnCheck >= 55 && spawnCheck <= 60) {  // if the number is between 50 and 60
 			spawnSwitch = true; // ^ turn spawn on
 		}
 		else {
@@ -126,4 +128,29 @@ class Ghost {
 			}
 		}
 	}
+	void spawnDeathOoze() {
+		for(int i = 0; i < finalOoze.length; i++) {
+			finalOoze[i] = new OozeDrop(centerX + int(random(-35, 35)), centerY + int(random(-35, 35)));
+		}
+	
+	}
+	void updateDeathOoze() {
+		for(int i = 0; i < finalOoze.length; i++) {
+			if(finalOoze[i] != null) {
+				// if the ooze fell past the ground get rid of it so we can make a new one
+				if (finalOoze[i].y > height) {
+					finalOoze[i] = null;
+				}
+				else if(finalOoze[i].busterCheck()) {
+					finalOoze[i] = null;
+				}
+				// if the ooze didn't fall to the ground yet then update it
+				else {
+					finalOoze[i].move();
+					finalOoze[i].display();
+				}
+			}
+		}
+	}
+
 }//
