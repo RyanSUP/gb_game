@@ -23,6 +23,7 @@ class Buster {
 		}
 		if (health <= 0) {
 			alive = false;
+			if (sfx) busterSfxDeath.trigger();
 		}
 	}
 	void move() {
