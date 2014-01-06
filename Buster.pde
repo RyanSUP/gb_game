@@ -13,6 +13,8 @@ class Buster {
 		center = x + w/2;
 	} // ----constructor
 	void hit() {
+		if (sfx) busterSfxHit[int(random(2))].trigger();
+		health -= 1;
 		if(shieldStr > 0) {
 			shieldStr = shieldStr - 1;
 		}

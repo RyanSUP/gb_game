@@ -18,6 +18,7 @@ class BluePower {
 	}
 	boolean checkForBuster() {
 		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y) {
+			if (sfx) busterSfxShield.trigger();
 			bluePower = true;
 			return true;
 		}

@@ -19,7 +19,6 @@ class OozeDrop {
 	}
 	boolean busterCheck() {
 		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y) {
-			println("within x range of buster");
 			gB.hit();
 			return true;
 		}
