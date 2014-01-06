@@ -87,8 +87,9 @@ class Ghost {
 		if(counter >= hoverLimit) {
 			dead = true;
 			ghostCount -= 1;
+			if (sfx) oozeSfxDeath.trigger();
 			spawnDeathOoze();
-			println("You killed a ghost!");
+			//println("You killed a ghost!");
 		}
 	}
 	void kill() {
@@ -108,6 +109,7 @@ class Ghost {
 		// spawns the ooze only if the switch is set and only if there isn't already an ooze
 		if(spawnSwitch && ooze == null) {
 			ooze = new OozeDrop(centerX, centerY);
+			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
 		}
 	}
 	void updateOoze() {
