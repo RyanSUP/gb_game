@@ -162,6 +162,9 @@ void movePower(){
 
 void loadSfx() {
 	sfx = true;
+	// http://www.freesound.org/
+	// Search for these file types:
+	//   type: wav, bitdepth: 16, license: "Creative Commons 0"
 	oozeSfxDropOoze[0] = minim.loadSample("164596__adam-n__water-splash-5.wav", 512);
 	oozeSfxDropOoze[1] = minim.loadSample("189504__music-boy__water-splash.wav", 512);
 	oozeSfxDropOoze[2] = minim.loadSample("190085__tran5ient__splash9.wav", 512);
