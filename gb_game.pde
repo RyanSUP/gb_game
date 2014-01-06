@@ -9,6 +9,7 @@ void setup() {
 	frameRate(60);
 	size(500, 500);
 	startLevel(level);
+	gB = new Buster();
 }
 
 void draw() {
@@ -41,6 +42,7 @@ void draw() {
 				ghost_[i].deathWatch();
 			}
 		}
+		levelCount();
 		healthBar();
 
 		// If all enemies got killed
@@ -70,8 +72,7 @@ void keyReleased() {
 void startLevel(int levelNumber) {
 
 	level = levelNumber;
-	gB = new Buster();
-
+	
 	if (levelNumber == 1) {
 		ghost_ = new Ghost[1];
 	}
@@ -86,8 +87,19 @@ void startLevel(int levelNumber) {
 }
 
 void healthBar() {
+	//background bar
 	fill(100, 255, 100);
 	noStroke();
 	rect(0, 0, gB.health * 20, 20);
+	noFill();
+	strokeWeight(2);
+	stroke(0);
+	rect(-2, -2, 200, 20);
 	//println(gB.health);
+}
+void levelCount() {
+	fill(0);
+	textSize(20);
+	textAlign(CENTER, CENTER);
+	text("LEVEL "+level, width - 50, 10);
 }
