@@ -1,6 +1,6 @@
 
 class Ghost {
-	float x, y, rx, ry, w, speed, centerX, centerY, counter, hoverLimit, spawnCheck;
+	float x, y, rx, ry, w, speed, centerX, centerY, counter, hoverLimit, spawnCheck, r, prob;
 	boolean hasMouse = false;
 	boolean dead = false;
 	boolean spawnSwitch = false;	
@@ -9,7 +9,7 @@ class Ghost {
 	// --- data
 	Ghost() {
 		spawnCheck = random(1, 100);
-		speed = 3; //ghost speed
+		speed = 6; //ghost speed
 		w = 50;
 		x = random(0, width);
 		y = random(0, height/2);
@@ -45,19 +45,25 @@ class Ghost {
 		ellipse(x, y, w, w);
 	}
 	void move() {
-		ry = random(-speed, speed); // change speed with G
-		rx = random(-speed, speed); // ^^
-		x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost
-		y = constrain(y + ry, 20, height - gB.h - 100); // ^ same with Y
+		r = random(1); //random value for proabability
+		prob = 0.9; //probability value
+		if(r < prob) {
+			rx = random(-speed, speed); // ^^
+			x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost
+		}
+		else {
+			ry = random(-speed, speed); // change speed with G
+			y = constrain(y + ry, 20, height - gB.h - 100); // ^ same with Y
+		}
 		centerX = x + 25;
 		centerY = y + 25;
 	}
 	void freakout() { // increases speed if mouse is over the ghost
 		if(hasMouse) {
-			speed = 10;
+			speed = 15;
 		}
 		else {
-			speed = 3;
+			speed = 6;
 		}
 	}
 	void mouseCheck() {
@@ -80,6 +86,7 @@ class Ghost {
 	void deathWatch() {
 		if(counter >= hoverLimit) {
 			dead = true;
+			ghostCount -= 1;
 			spawnDeathOoze();
 			println("You killed a ghost!");
 		}

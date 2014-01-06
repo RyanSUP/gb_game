@@ -1,4 +1,5 @@
 Buster gB;
+int ghostCount = 0; // how many ghosts are on screen
 Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
 BluePower shield;
@@ -17,6 +18,7 @@ void setup() {
 
 void draw() {
 	//frameRate(10);
+	println(ghostCount);
 	int deathToll = 0;
 	background(255);
 
@@ -78,9 +80,11 @@ void startLevel(int levelNumber) {
 	level = levelNumber;
 	
 	if (levelNumber == 1) {
+		ghostCount = 1;
 		ghost_ = new Ghost[1];
 	}
 	else if (levelNumber >= 2) {
+		ghostCount = level + 1;
 		ghost_ = new Ghost[level + 1];
 	}
 
@@ -113,8 +117,8 @@ void levelCount() {
 	text("LEVEL "+level, width - 50, 10);
 }
 void CheckSpawnPower() {
-	powerNumber = random(1, 1000);
-	if(powerNumber >= 150 && powerNumber <= 160) {
+	powerNumber = random(300);
+	if(ghostCount >= powerNumber) {
 		blueSpawn = true;
 	}
 	else {
