@@ -27,6 +27,7 @@ void draw() {
 		for(int i = 0; i < ghost_.length; i++) {
 			if(ghost_[i].dead) {
 				ghost_[i].updateOoze();
+				ghost_[i].updateDeathOoze();
 				ghost_[i].kill();
 				deathToll += 1;
 			}

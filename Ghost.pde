@@ -5,6 +5,7 @@ class Ghost {
 	boolean dead = false;
 	boolean spawnSwitch = false;	
 	OozeDrop ooze;
+	OozeDrop [] finalOoze = new OozeDrop[5];
 	// --- data
 	Ghost() {
 		spawnCheck = random(1, 100);
@@ -79,6 +80,7 @@ class Ghost {
 	void deathWatch() {
 		if(counter >= hoverLimit) {
 			dead = true;
+			spawnDeathOoze();
 			println("You killed a ghost!");
 		}
 	}
@@ -118,4 +120,29 @@ class Ghost {
 			}
 		}
 	}
+	void spawnDeathOoze() {
+		for(int i = 0; i < finalOoze.length; i++) {
+			finalOoze[i] = new OozeDrop(centerX + int(random(-35, 35)), centerY + int(random(-35, 35)));
+		}
+	
+	}
+	void updateDeathOoze() {
+		for(int i = 0; i < finalOoze.length; i++) {
+			if(finalOoze[i] != null) {
+				// if the ooze fell past the ground get rid of it so we can make a new one
+				if (finalOoze[i].y > height) {
+					finalOoze[i] = null;
+				}
+				else if(finalOoze[i].busterCheck()) {
+					finalOoze[i] = null;
+				}
+				// if the ooze didn't fall to the ground yet then update it
+				else {
+					finalOoze[i].move();
+					finalOoze[i].display();
+				}
+			}
+		}
+	}
+
 }//
