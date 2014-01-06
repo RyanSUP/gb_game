@@ -4,6 +4,7 @@ Minim minim;
 AudioSample [] oozeSfxDropOoze = new AudioSample[3];
 AudioSample oozeSfxDeath;
 AudioSample [] busterSfxHit = new AudioSample[2];
+AudioSample busterSfxShield;
 boolean sfx;
 
 Buster gB;
@@ -171,4 +172,5 @@ void loadSfx() {
 	oozeSfxDeath = minim.loadSample("171844__oliroches__deathscream.wav", 512);
 	busterSfxHit[0] = minim.loadSample("163441__under7dude__man-getting-hit.wav", 512);
 	busterSfxHit[1] = minim.loadSample("163442__under7dude__man-dying.wav", 512);
+	busterSfxShield = minim.loadSample("108823__freek12345__rejectj.wav", 512);
 }
