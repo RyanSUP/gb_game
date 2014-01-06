@@ -1,3 +1,7 @@
+import ddf.minim.*;
+
+Minim minim;
+
 Buster gB;
 Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
@@ -8,6 +12,7 @@ void setup() {
 	smooth();
 	frameRate(60);
 	size(500, 500);
+	minim = new Minim(this);
 	startLevel(level);
 	gB = new Buster();
 }
