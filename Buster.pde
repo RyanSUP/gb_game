@@ -4,6 +4,7 @@ class Buster {
 	boolean alive = true;
 	int health = 10;
 	Ghost currentTarget = null;
+	AudioSample [] hitSFX = new AudioSample[2];
 	// ---Data ^^
 	Buster() {
 		w = 50;
@@ -11,8 +12,11 @@ class Buster {
 		x = width/2 - w/2;
 		y = height - h;
 		center = x + w/2;
+		hitSFX[0] = minim.loadSample("163441__under7dude__man-getting-hit.wav", 512);
+		hitSFX[1] = minim.loadSample("163442__under7dude__man-dying.wav", 512);
 	} // ----constructor
 	void hit() {
+		hitSFX[int(random(2))].trigger();
 		health -= 1;
 		if (health <= 0) {
 			alive = false;
