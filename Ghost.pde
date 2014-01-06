@@ -5,8 +5,6 @@ class Ghost {
 	boolean dead = false;
 	boolean spawnSwitch = false;	
 	OozeDrop ooze;
-	AudioSample [] oozeSFX = new AudioSample[3];
-	AudioSample deathScream;
 	OozeDrop [] finalOoze = new OozeDrop[5];
 	// --- data
 	Ghost() {
@@ -17,10 +15,6 @@ class Ghost {
 		y = random(0, height/2);
 		centerX = x + 25;
 		centerY = y + 25;
-		oozeSFX[0] = minim.loadSample("164596__adam-n__water-splash-5.wav", 512);
-		oozeSFX[1] = minim.loadSample("189504__music-boy__water-splash.wav", 512);
-		oozeSFX[2] = minim.loadSample("190085__tran5ient__splash9.wav", 512);
-		deathScream = minim.loadSample("171844__oliroches__deathscream.wav", 512);
 		if (level == 1) {
 			if (difficulty == "testing") {
 				hoverLimit = 10;
@@ -86,9 +80,9 @@ class Ghost {
 	void deathWatch() {
 		if(counter >= hoverLimit) {
 			dead = true;
-			deathScream.trigger();
+			if (sfx) oozeSfxDeath.trigger();
 			spawnDeathOoze();
-			println("You killed a ghost!");
+			//println("You killed a ghost!");
 		}
 	}
 	void kill() {
@@ -108,7 +102,7 @@ class Ghost {
 		// spawns the ooze only if the switch is set and only if there isn't already an ooze
 		if(spawnSwitch && ooze == null) {
 			ooze = new OozeDrop(centerX, centerY);
-			oozeSFX[int(random(3))].trigger();
+			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
 		}
 	}
 	void updateOoze() {

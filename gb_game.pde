@@ -1,6 +1,10 @@
 import ddf.minim.*;
 
 Minim minim;
+AudioSample [] oozeSfxDropOoze = new AudioSample[3];
+AudioSample oozeSfxDeath;
+AudioSample [] busterSfxHit = new AudioSample[2];
+boolean sfx;
 
 Buster gB;
 Controller gameController = new Controller();
@@ -11,6 +15,7 @@ String difficulty = "testing"; // testing, easy, hard
 int level = 1;
 boolean blueSpawn = false;
 float powerNumber;
+
 void setup() {
 	smooth();
 	frameRate(60);
@@ -18,6 +23,7 @@ void setup() {
 	minim = new Minim(this);
 	startLevel(level);
 	gB = new Buster();
+	loadSfx();
 }
 
 void draw() {
@@ -152,4 +158,14 @@ void movePower(){
 			shield.display();
 		}
 	}
+}
+
+void loadSfx() {
+	sfx = true;
+	oozeSfxDropOoze[0] = minim.loadSample("164596__adam-n__water-splash-5.wav", 512);
+	oozeSfxDropOoze[1] = minim.loadSample("189504__music-boy__water-splash.wav", 512);
+	oozeSfxDropOoze[2] = minim.loadSample("190085__tran5ient__splash9.wav", 512);
+	oozeSfxDeath = minim.loadSample("171844__oliroches__deathscream.wav", 512);
+	busterSfxHit[0] = minim.loadSample("163441__under7dude__man-getting-hit.wav", 512);
+	busterSfxHit[1] = minim.loadSample("163442__under7dude__man-dying.wav", 512);
 }
