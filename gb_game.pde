@@ -22,9 +22,10 @@ void draw() {
 		gB.move();
 		gB.beam();
 		gB.display();
-		
+
 		for(int i = 0; i < ghost_.length; i++) {
 			if(ghost_[i].dead) {
+				ghost_[i].updateOoze();
 				ghost_[i].kill();
 				deathToll += 1;
 			}
