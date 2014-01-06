@@ -55,9 +55,6 @@ void draw() {
 		// If all enemies got killed
 		if(deathToll == ghost_.length) {
 			startLevel(level+1);
-			textSize(50);
-			textAlign(CENTER, CENTER);
-			text("LEVEL "+level, width/2, height/2);
 		}
 
 	}
