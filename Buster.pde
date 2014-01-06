@@ -13,7 +13,12 @@ class Buster {
 		center = x + w/2;
 	} // ----constructor
 	void hit() {
-		health -= 1;
+		if(shieldStr > 0) {
+			shieldStr = shieldStr - 1;
+		}
+		else {
+			health -= 1;
+		}
 		if (health <= 0) {
 			alive = false;
 		}
