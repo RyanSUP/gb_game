@@ -88,8 +88,8 @@ class Ghost {
 		hasMouse = false;
 	}
 	void updateSpawn() { // checks through the random spawn number
-		spawnCheck = random(1, 100); // random spawn cycles through numbers 1 - 100
-		if(spawnCheck >= 50 && spawnCheck <= 60) {  // if the number is between 50 and 60
+		spawnCheck = random(0, 200); // random spawn cycles through numbers 1 - 100
+		if(spawnCheck >= 55 && spawnCheck <= 60) {  // if the number is between 50 and 60
 			spawnSwitch = true; // ^ turn spawn on
 		}
 		else {

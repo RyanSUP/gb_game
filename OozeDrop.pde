@@ -3,9 +3,9 @@ class OozeDrop {
 	OozeDrop (float parentX, float parentY) {
 		x = parentX;
 		y = parentY;
-		w = 15;
-		speed = 2;
-		gravity = .05;
+		w = random(15, 25);
+		speed = random(1.5, 8);
+		gravity = .07;
 	}
 	void display() {
 		noStroke();
@@ -16,6 +16,7 @@ class OozeDrop {
 	void move() {
 		speed = speed + gravity;
 		y = y + speed;
+		println(y);
 	}
 	boolean busterCheck() {
 		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y) {
