@@ -6,6 +6,7 @@ class Ghost {
 	boolean spawnSwitch = false;	
 	OozeDrop ooze;
 	AudioSample [] oozeSFX = new AudioSample[3];
+	AudioSample deathScream;
 	// --- data
 	Ghost() {
 		spawnCheck = random(1, 100);
@@ -18,6 +19,7 @@ class Ghost {
 		oozeSFX[0] = minim.loadSample("164596__adam-n__water-splash-5.wav", 512);
 		oozeSFX[1] = minim.loadSample("189504__music-boy__water-splash.wav", 512);
 		oozeSFX[2] = minim.loadSample("190085__tran5ient__splash9.wav", 512);
+		deathScream = minim.loadSample("171844__oliroches__deathscream.wav", 512);
 		if (level == 1) {
 			if (difficulty == "testing") {
 				hoverLimit = 10;
@@ -83,6 +85,7 @@ class Ghost {
 	void deathWatch() {
 		if(counter >= hoverLimit) {
 			dead = true;
+			deathScream.trigger();
 			println("You killed a ghost!");
 		}
 	}
