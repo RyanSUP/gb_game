@@ -75,7 +75,7 @@ void startLevel(int levelNumber) {
 		ghost_ = new Ghost[1];
 	}
 	else if (levelNumber >= 2) {
-		ghost_ = new Ghost[2];
+		ghost_ = new Ghost[level + 1];
 	}
 
 	for(int i = 0; i < ghost_.length; i++) {

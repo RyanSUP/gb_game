@@ -10,8 +10,8 @@ class Ghost {
 		spawnCheck = random(1, 100);
 		speed = 3; //ghost speed
 		w = 50;
-		x = 200;
-		y = 200;
+		x = random(0, width);
+		y = random(0, height/2);
 		centerX = x + 25;
 		centerY = y + 25;
 		if (level == 1) {
