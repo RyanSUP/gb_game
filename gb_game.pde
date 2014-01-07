@@ -9,6 +9,7 @@ AudioSample busterSfxDeath;
 boolean sfx;
 
 PImage backgroundScene;
+PImage shieldImg;
 
 Buster gB;
 int ghostCount = 0; // how many ghosts are on screen
@@ -172,6 +173,7 @@ void movePower(){
 
 void loadImages() {
 	backgroundScene = loadImage("background.png");
+	shieldImg = loadImage("shield-sketch-mike.png");
 }
 
 void loadSfx() {
