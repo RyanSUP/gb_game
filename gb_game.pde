@@ -124,17 +124,20 @@ void healthBar() {
 	rect(-2, -2, 200, 20);
 	//println(gB.health);
 }
+
 void shieldBar() {
 	fill(100,100,255, 130);
 	noStroke();
 	rect(0,0, shieldStr * 20, 17);
 }
+
 void levelCount() {
 	fill(0);
 	textSize(20);
 	textAlign(CENTER, CENTER);
 	text("LEVEL "+level, width - 50, 10);
 }
+
 void CheckSpawnPower() {
 	powerNumber = random(300);
 	if(ghostCount >= powerNumber) {
@@ -144,11 +147,13 @@ void CheckSpawnPower() {
 		blueSpawn = false;
 	}
 }
+
 void SpawnBluePower() {
 	if(blueSpawn && shield == null){
 		shield = new BluePower();
 	}
 }
+
 void movePower(){
 		if(shield != null) {
 		// if the ooze fell past the ground get rid of it so we can make a new one
