@@ -37,7 +37,6 @@ void setup() {
 
 void draw() {
 	//frameRate(10);
-	println(ghostCount);
 	int deathToll = 0;
 	background(255);
 	image(backgroundScene, 0, 0);
@@ -136,9 +135,10 @@ void levelCount() {
 	text("LEVEL "+level, width - 50, 10);
 }
 void CheckSpawnPower() {
-	powerNumber = random(300);
-	if(ghostCount >= powerNumber) {
+	powerNumber = random(1000);
+	if(ghostCount >= powerNumber && shield == null) {
 		blueSpawn = true;
+		println(powerNumber);
 	}
 	else {
 		blueSpawn = false;
