@@ -39,10 +39,7 @@ class Ghost {
 		}
 	} // constructor -----
 	void display() {
-		noStroke();
-		ellipseMode(CORNER);
-		fill(100, 255, 100);
-		ellipse(x, y, w, w);
+		image(ghostImg,x,y);
 	}
 	void move() {
 		r = random(1); //random value for proabability

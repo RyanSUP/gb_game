@@ -36,9 +36,7 @@ class Buster {
 		}
 	}
 	void display() {
-		noStroke();
-		fill(175);
-		rect(x, y, w, h); // Ghost buster position
+		image(busterGuy, x, y);
 	}
 	void findTarget() { // detects if there is a ghost under a mouse pointer and saves the last ghost
 		int targetID = -1; // save the array pointer to the hovered ghost
@@ -59,13 +57,13 @@ class Buster {
 	void beam() { // draw beam - more layers = colorful beam
 		if(currentTarget != null) {
 			strokeWeight(10);
-			stroke(245, random(100,200), 0, 175);
+			stroke(245, random(100,200), 0);
 			line(center, height - 50, currentTarget.centerX, currentTarget.centerY);
 			strokeWeight(5);
-			stroke(245, random(100,200), 0, 175);
+			stroke(245, random(100,200), 0);
 			line(center, height - 50, currentTarget.centerX, currentTarget.centerY);
 			strokeWeight(2);
-			stroke(245, random(100,200), 0, 175);
+			stroke(245, random(100,200), 0);
 			line(center, height - 50, currentTarget.centerX, currentTarget.centerY);
 			//println("This is the Current Target: " + currentTarget);
 		}
