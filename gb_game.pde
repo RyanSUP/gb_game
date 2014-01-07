@@ -69,7 +69,7 @@ void draw() {
 		movePower();		
 		// If all enemies got killed
 		if(deathToll == ghost_.length) {
-			startLevel(level+1);
+			startLevel(level+1);	
 		}
 
 	}
@@ -106,7 +106,6 @@ void startLevel(int levelNumber) {
 	}
 
 }
-
 void healthBar() {
 	//background bar
 	fill(100, 255, 100);
