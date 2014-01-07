@@ -81,6 +81,7 @@ void draw() {
 
 	}
 	else {
+		fill(255,255,255);
 		textSize(50);
 		textAlign(CENTER, CENTER);
 		text("DEFEAT!", width/2, height/2);
@@ -114,28 +115,42 @@ void startLevel(int levelNumber) {
 
 }
 void healthBar() {
-	//background bar
-	fill(100, 255, 100);
+	// Text
+	fill(255,255,255);
+	textSize(10);
+	textAlign(RIGHT, TOP);
+	text("HEALTH", width - 200 - 7, 1);
+	// Bar
 	noStroke();
-	rect(0, 0, gB.health * 20, 20);
+	fill(100,255,100);
+	rect(width - 200 - 3, 2, gB.health * 20, 10);
+	// Outline
 	noFill();
-	strokeWeight(2);
-	stroke(0);
-	rect(-2, -2, 200, 20);
-	//println(gB.health);
+	stroke(255,255,255, 50);
+	rect(width - 200 - 3, 2, 200, 10);
 }
 
 void shieldBar() {
-	fill(100,100,255, 130);
+	// Text
+	fill(255,255,255);
+	textSize(10);
+	textAlign(RIGHT, TOP);
+	text("SHIELD", width - 200 - 7, 15);
+	// Bar
 	noStroke();
-	rect(0,0, shieldStr * 20, 17);
+	fill(100,100,255, 130);
+	rect(width - 200 - 3, 15, shieldStr * 20, 10);
+	// Outline
+	noFill();
+	stroke(255,255,255, 50);
+	rect(width - 200 - 3, 15, 200, 10);
 }
 
 void levelCount() {
-	fill(0);
+	fill(255,255,255);
 	textSize(20);
-	textAlign(CENTER, CENTER);
-	text("LEVEL "+level, width - 50, 10);
+	textAlign(LEFT, TOP);
+	text("LEVEL "+level, 5, 3);
 }
 
 void CheckSpawnPower() {
