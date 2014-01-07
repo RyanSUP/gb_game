@@ -81,6 +81,9 @@ void draw() {
 
 	}
 	else {
+		noStroke();
+		fill(255,100,100, 100);
+		rect(0,0, width, height);
 		fill(255,255,255);
 		textSize(50);
 		textAlign(CENTER, CENTER);
