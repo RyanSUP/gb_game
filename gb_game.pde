@@ -8,6 +8,8 @@ AudioSample busterSfxShield;
 AudioSample busterSfxDeath;
 boolean sfx;
 
+PImage backgroundScene;
+
 Buster gB;
 int ghostCount = 0; // how many ghosts are on screen
 Controller gameController = new Controller();
@@ -27,6 +29,7 @@ void setup() {
 	startLevel(level);
 	gB = new Buster();
 	loadSfx();
+	loadImages();
 }
 
 void draw() {
@@ -34,6 +37,7 @@ void draw() {
 	println(ghostCount);
 	int deathToll = 0;
 	background(255);
+	image(backgroundScene, 0, 0);
 
 	if (gB.alive) {
 
@@ -163,6 +167,10 @@ void movePower(){
 			shield.display();
 		}
 	}
+}
+
+void loadImages() {
+	backgroundScene = loadImage("background.png");
 }
 
 void loadSfx() {
