@@ -11,6 +11,7 @@ boolean sfx;
 PImage busterGuy;
 PImage backgroundScene;
 PImage ghostImg;
+PImage shieldImg;
 
 Buster gB;
 int ghostCount = 0; // how many ghosts are on screen
@@ -175,6 +176,7 @@ void loadImages() {
 	backgroundScene = loadImage("background.png");
 	busterGuy = loadImage("buster-sketch-mike.png");
 	ghostImg = loadImage("ghost-sketch-mike.png");
+	shieldImg = loadImage("shield-sketch-mike.png");
 }
 
 void loadSfx() {
