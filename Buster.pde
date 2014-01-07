@@ -3,7 +3,8 @@ class Buster {
 	boolean hasTarget = false;
 	boolean alive = true;
 	int health = 10;
-	boolean direction = true; // true == left false == right
+	boolean rDirection = false;
+	boolean lDirection = true;
 	boolean beamDirection; // true == left false == right
 	Ghost currentTarget = null;
 	// ---Data ^^
@@ -31,24 +32,27 @@ class Buster {
 	void move() {
 		if(gameController.isGoingLeft()) {
 			x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
-			beamX = x + 25; // update beamX position
-			direction = true;
+			rDirection = false;
+			lDirection = true;
 			}			
 		else if(gameController.isGoingRight()) {
 			x = constrain(x + 3, 0, width - w); // move ghost buster right if D is pressed
-			beamX = x + 25; // update beamX position
-			direction = false;
+			lDirection = false;
+			rDirection = true;
 		}
 	}
 	void display() {
+		noStroke();
 		rect(x,y,w,w);
-		if(direction) {
+		if(lDirection) {
 			faceLeft();
 		}
-		else if(direction == false) {
+		else if(rDirection) {
 			faceRight();
+		}	
+		else {
+			faceLeft();
 		}
-		
 	}
 	void findTarget() { // detects if there is a ghost under a mouse pointer and saves the last ghost
 		int targetID = -1; // save the array pointer to the hovered ghost
@@ -65,18 +69,29 @@ class Buster {
 			currentTarget = ghost_[targetID]; // set Buster's current target to a ghost
 			//println("This is the Current Target: " + currentTarget);
 		}
+		if(targetID > -1) {
+			if(ghost_[targetID].x > x) {
+				println("should so someting");
+				lDirection = false;
+				rDirection = true;
+			}
+			else {
+				rDirection = false;
+				lDirection = true;
+			}
+		}	
 	}
 	void beam() { // draw beam - more layers = colorful beam
 		if(currentTarget != null) {
 			strokeWeight(10);
 			stroke(245, random(100,200), 0);
-			line(beamX, height - 50, currentTarget.centerX, currentTarget.centerY);
+			line(beamX, beamY + w + 5, currentTarget.centerX, currentTarget.centerY);
 			strokeWeight(5);
 			stroke(245, random(100,200), 0);
-			line(beamX, height - 50, currentTarget.centerX, currentTarget.centerY);
+			line(beamX, beamY + w + 5, currentTarget.centerX, currentTarget.centerY);
 			strokeWeight(2);
 			stroke(245, random(100,200), 0);
-			line(beamX, height - 50, currentTarget.centerX, currentTarget.centerY);
+			line(beamX, beamY + w + 5, currentTarget.centerX, currentTarget.centerY);
 			//println("This is the Current Target: " + currentTarget);
 		}
 		else {
@@ -84,16 +99,23 @@ class Buster {
 		}
 	}
 	void faceRight() {
-		pushMatrix();
-		scale(-1,1);
-		image(busterGuy, -x -w, y);
-		popMatrix();
+		beamX = x + w; // update beamX position
+
+		if(rDirection) {
+			pushMatrix();
+			scale(-1,1);
+			image(busterGuy, -x -w, y);
+			popMatrix();
+		}
 	}
 	void faceLeft() {
-		pushMatrix();
-		scale(1,1);
-		image(busterGuy, x, y);
-		popMatrix();
+		beamX = x; // update beamX position
+		if(lDirection) {
+			pushMatrix();
+			scale(1,1);
+			image(busterGuy, x, y);
+			popMatrix();
+		}
 	}
 	 // functions ----
 }
