@@ -85,9 +85,9 @@ void draw() {
 		fill(255,100,100, 100);
 		rect(0,0, width, height);
 		fill(255,255,255);
-		textSize(50);
+		textSize(80);
 		textAlign(CENTER, CENTER);
-		text("DEFEAT!", width/2, height/2);
+		text("DEFEAT!", width/2, height/2 - 100);
 	}
 }
 
