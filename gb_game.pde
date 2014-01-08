@@ -14,13 +14,14 @@ PImage backgroundScene;
 PImage ghostImg;
 PImage shieldImg;
 
+float timer = 0; //timer for freeze ray
 Buster gB;
 int ghostCount = 0; // how many ghosts are on screen
 Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
 BluePower shield;
-int shieldStr = 0; // strength of shield
-String difficulty = "easy"; // testing, easy, hard
+int shieldStr = 10; // strength of shield
+String difficulty = "testing"; // testing, easy, hard
 int level = 1;
 boolean stunReady = false;
 StunBeam stunPower;
@@ -71,6 +72,7 @@ void draw() {
 			}
 		}
 		canUseStun();
+		activateStun();
 		levelCount();
 		healthBar();
 		shieldBar();
@@ -105,15 +107,8 @@ void draw() {
 		text("DEFEAT!", width/2, height - 100);
 	}
 }
-
 void keyPressed() {
     gameController.handleKeyPress();
-    if(stunReady && key == 'f' || key == 'F') {
-    	shieldStr = shieldStr - 5;
-    	stunPower = new StunBeam();
-    	activateStun();
-    	println("Stun, ACTIVATE!");
-    }
 }
 
 void keyReleased() {
@@ -245,8 +240,26 @@ void loadImages() {
 	shieldImg = loadImage("shield.png");
 }
 void activateStun() {
-	stunPower.display();
-	stunPower.setStun();
+    if(stunReady && stunPower == null && key == 'f' || key == 'F') {
+    	shieldStr = shieldStr - 5;
+    	stunPower = new StunBeam();
+    	//println("Stun, ACTIVATE!");
+    }
+    if(stunPower != null) {
+		stunPower.display();
+		stunPower.setStun();
+    	stunTimer();
+
+	}
+}
+void stunTimer() {
+	timer += 1;
+	println(timer);
+	if(timer >= 100) {
+		stunPower.unsetStun();
+		stunPower = null;
+		timer = 0;
+	}
 
 }
 void loadSfx() {

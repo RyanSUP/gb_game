@@ -123,10 +123,15 @@ class Ghost {
 			}
 			// if the ooze didn't fall to the ground yet then update it
 			else {
+				println(this + " stunned: " + stunned);
+
 				if(stunned) {
-					ooze.move();
+					ooze.display();
 				}
-				ooze.display();
+				else {
+					ooze.move();
+					ooze.display();
+				}
 			}
 		}
 	}
@@ -148,10 +153,14 @@ class Ghost {
 				}
 				// if the ooze didn't fall to the ground yet then update it
 				else {
+						println(this + " stunned: " + stunned);
 					if(stunned) {
-						finalOoze[i].move();
+						finalOoze[i].display();
 					}
-					finalOoze[i].display();
+					else {
+						finalOoze[i].move();	
+						finalOoze[i].display();
+					}
 				}
 			}
 		}
