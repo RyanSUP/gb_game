@@ -71,7 +71,6 @@ class Buster {
 		}
 		if(targetID > -1) {
 			if(ghost_[targetID].x > x) {
-				println("should so someting");
 				lDirection = false;
 				rDirection = true;
 			}

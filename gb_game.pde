@@ -80,13 +80,29 @@ void draw() {
 
 	}
 	else {
+		int i;
+		if (level > 0) {
+			level = 0;
+			ghost_ = new Ghost[80];
+			for(i = 0; i < ghost_.length; i++) {
+				ghost_[i] = new Ghost();
+			}
+		}
+		for(i = 0; i < ghost_.length; i++) {
+			ghost_[i].display();
+			ghost_[i].updateSpawn();
+			ghost_[i].spawnOoze();
+			ghost_[i].updateOoze();
+			ghost_[i].move();
+		}
 		noStroke();
 		fill(255,100,100, 100);
 		rect(0,0, width, height);
-		fill(255,255,255);
+		fill(255,20,20);
 		textSize(80);
 		textAlign(CENTER, CENTER);
-		text("DEFEAT!", width/2, height/2 - 100);
+		text("DEFEAT!", width/2, height - 100);
+		println("gb alive "+gB.alive);
 	}
 }
 
@@ -116,6 +132,7 @@ void startLevel(int levelNumber) {
 	}
 
 }
+
 void healthBar() {
 	// Text
 	fill(255,255,255);
