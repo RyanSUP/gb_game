@@ -29,6 +29,7 @@ void setup() {
 	smooth();
 	frameRate(60);
 	size(500, 500);
+	frame.setTitle("GHOST BUSTER");
 	frame.setIconImage( getToolkit().getImage("ghost_buster.ico") );
 	minim = new Minim(this);
 	startLevel(level);
