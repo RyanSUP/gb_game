@@ -9,10 +9,6 @@ class BluePower {
 	}
 	void display() {
 		image(shieldImg, x, y);
-		//noStroke();
-		//fill(100,100,255);
-		//ellipseMode(CORNER);
-		//ellipse(x,y,w,w);
 	}
 	void move() {
 		y = y + speed;

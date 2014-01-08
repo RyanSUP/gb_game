@@ -1,6 +1,8 @@
 
 class Ghost {
 	float x, y, rx, ry, w, speed, centerX, centerY, counter, hoverLimit, spawnCheck, r, prob;
+	boolean stunned = false;
+
 	boolean hasMouse = false;
 	boolean dead = false;
 	boolean spawnSwitch = false;	
@@ -121,7 +123,9 @@ class Ghost {
 			}
 			// if the ooze didn't fall to the ground yet then update it
 			else {
-				ooze.move();
+				if(stunned) {
+					ooze.move();
+				}
 				ooze.display();
 			}
 		}
@@ -144,7 +148,9 @@ class Ghost {
 				}
 				// if the ooze didn't fall to the ground yet then update it
 				else {
-					finalOoze[i].move();
+					if(stunned) {
+						finalOoze[i].move();
+					}
 					finalOoze[i].display();
 				}
 			}

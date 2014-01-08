@@ -22,9 +22,10 @@ BluePower shield;
 int shieldStr = 0; // strength of shield
 String difficulty = "easy"; // testing, easy, hard
 int level = 1;
+boolean stunReady = false;
+StunBeam stunPower;
 boolean blueSpawn = false;
 float powerNumber;
-
 void setup() {
 	smooth();
 	frameRate(60);
@@ -69,6 +70,7 @@ void draw() {
 				ghost_[i].deathWatch();
 			}
 		}
+		canUseStun();
 		levelCount();
 		healthBar();
 		shieldBar();
@@ -106,6 +108,12 @@ void draw() {
 
 void keyPressed() {
     gameController.handleKeyPress();
+    if(stunReady && key == 'f' || key == 'F') {
+    	shieldStr = shieldStr - 5;
+    	stunPower = new StunBeam();
+    	activateStun();
+    	println("Stun, ACTIVATE!");
+    }
 }
 
 void keyReleased() {
@@ -154,9 +162,21 @@ void shieldBar() {
 	textAlign(RIGHT, TOP);
 	text("SHIELD", width - 200 - 7, 15);
 	// Bar
-	noStroke();
-	fill(100,100,255, 130);
-	rect(width - 200 - 3, 15, shieldStr * 20, 10);
+	if(stunReady) {
+		fill(255,255,255);
+		textSize(20);
+		textAlign(RIGHT, TOP);
+		text("PRESS F", width/2, 0);
+	
+		noStroke();
+		fill(255, 255, 255);	
+		rect(width - 200 - 3, 15, shieldStr * 20, 10);
+	}
+	else {
+		noStroke();
+		fill(100,100,255, 130);
+		rect(width - 200 - 3, 15, shieldStr * 20, 10);
+	}
 	// Outline
 	noFill();
 	stroke(255,255,255, 50);
@@ -209,7 +229,14 @@ void movePower(){
 		}
 	}
 }
-
+void canUseStun() {
+	if(shieldStr >= 5) {
+		stunReady = true;
+	}
+	else {
+		stunReady = false;
+	}
+}
 void loadImages() {
 	oozeImg = loadImage("oozedrop.png");
 	backgroundScene = loadImage("background.png");
@@ -217,7 +244,11 @@ void loadImages() {
 	ghostImg = loadImage("ghost.png");
 	shieldImg = loadImage("shield.png");
 }
+void activateStun() {
+	stunPower.display();
+	stunPower.setStun();
 
+}
 void loadSfx() {
 	sfx = true;
 	// http://www.freesound.org/

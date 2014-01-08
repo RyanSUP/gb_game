@@ -13,6 +13,7 @@ class OozeDrop {
 	void move() {
 		speed = speed + gravity;
 		y = y + speed;
+
 	}
 	boolean busterCheck() {
 		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y) {
