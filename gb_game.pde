@@ -90,19 +90,15 @@ void draw() {
 		}
 		for(i = 0; i < ghost_.length; i++) {
 			ghost_[i].display();
-			ghost_[i].updateSpawn();
-			ghost_[i].spawnOoze();
-			ghost_[i].updateOoze();
 			ghost_[i].move();
 		}
 		noStroke();
 		fill(255,100,100, 100);
 		rect(0,0, width, height);
-		fill(255,20,20);
+		fill(0,0,0);
 		textSize(80);
 		textAlign(CENTER, CENTER);
 		text("DEFEAT!", width/2, height - 100);
-		println("gb alive "+gB.alive);
 	}
 }
 
@@ -213,11 +209,11 @@ void movePower(){
 }
 
 void loadImages() {
-	oozeImg = loadImage("oozedrop-sketch-mike.png");
+	oozeImg = loadImage("oozedrop.png");
 	backgroundScene = loadImage("background.png");
-	busterGuy = loadImage("buster-sketch-mike.png");
-	ghostImg = loadImage("ghost-sketch-mike.png");
-	shieldImg = loadImage("shield-sketch-mike.png");
+	busterGuy = loadImage("buster.png");
+	ghostImg = loadImage("ghost.png");
+	shieldImg = loadImage("shield.png");
 }
 
 void loadSfx() {
