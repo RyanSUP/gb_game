@@ -2,7 +2,7 @@ class BluePower {
 	float x, y, w, speed, powerLife;
 	boolean bluePower = false;
 	BluePower() {
-		x = random(0, width - w);
+		x = random(width/4, width/4*3);
 		y = 0;
 		w = 40;
 		speed = 4;

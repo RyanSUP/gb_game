@@ -8,10 +8,7 @@ class OozeDrop {
 		gravity = .03;
 	}
 	void display() {
-		noStroke();
-		ellipseMode(CORNER);
-		fill(100, 255, 100);
-		ellipse(x, y, w, w);
+		image(oozeImg, x, y, w, w);
 	}
 	void move() {
 		speed = speed + gravity;

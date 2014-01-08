@@ -1,5 +1,5 @@
 class Buster {
-	float beamX, x, y, w, h, beamY;
+	float beamX, x, y, w, beamY;
 	boolean hasTarget = false;
 	boolean alive = true;
 	int health = 10;
@@ -9,10 +9,9 @@ class Buster {
 	Ghost currentTarget = null;
 	// ---Data ^^
 	Buster() {
-		w = 50;
-		h = 50;	
+		w = 50;	
 		x = width/2 - w/2;
-		y = height - h;
+		y = height - w;
 		beamX = x;
 		beamY = y - w/2;
 	} // ----constructor
@@ -32,13 +31,17 @@ class Buster {
 	void move() {
 		if(gameController.isGoingLeft()) {
 			x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
+			if(currentTarget == null) {
 			rDirection = false;
 			lDirection = true;
+		}
 			}			
 		else if(gameController.isGoingRight()) {
 			x = constrain(x + 3, 0, width - w); // move ghost buster right if D is pressed
+			if(currentTarget == null) {
 			lDirection = false;
 			rDirection = true;
+		}
 		}
 	}
 	void display() {
@@ -49,9 +52,6 @@ class Buster {
 		}
 		else if(rDirection) {
 			faceRight();
-		}	
-		else {
-			faceLeft();
 		}
 	}
 	void findTarget() { // detects if there is a ghost under a mouse pointer and saves the last ghost
@@ -69,9 +69,8 @@ class Buster {
 			currentTarget = ghost_[targetID]; // set Buster's current target to a ghost
 			//println("This is the Current Target: " + currentTarget);
 		}
-		if(targetID > -1) {
+		if(targetID > -1 && currentTarget != null) {
 			if(ghost_[targetID].x > x) {
-				println("should so someting");
 				lDirection = false;
 				rDirection = true;
 			}

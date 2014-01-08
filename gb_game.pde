@@ -8,6 +8,7 @@ AudioSample busterSfxShield;
 AudioSample busterSfxDeath;
 boolean sfx;
 
+PImage oozeImg;
 PImage busterGuy;
 PImage backgroundScene;
 PImage ghostImg;
@@ -19,7 +20,7 @@ Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
 BluePower shield;
 int shieldStr = 0; // strength of shield
-String difficulty = "testing"; // testing, easy, hard
+String difficulty = "easy"; // testing, easy, hard
 int level = 1;
 boolean blueSpawn = false;
 float powerNumber;
@@ -42,11 +43,10 @@ void draw() {
 	image(backgroundScene, 0, 0);
 
 	if (gB.alive) {
-
-		gB.findTarget();	
-		gB.move();
 		gB.beam();
+		gB.findTarget();	
 		gB.display();
+		gB.move();
 
 		for(int i = 0; i < ghost_.length; i++) {
 			if(ghost_[i].dead) {
@@ -196,6 +196,7 @@ void movePower(){
 }
 
 void loadImages() {
+	oozeImg = loadImage("oozedrop-sketch-mike.png");
 	backgroundScene = loadImage("background.png");
 	busterGuy = loadImage("buster-sketch-mike.png");
 	ghostImg = loadImage("ghost-sketch-mike.png");
