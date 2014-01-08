@@ -14,6 +14,7 @@ PImage backgroundScene;
 PImage ghostImg;
 PImage shieldImg;
 
+StunBeam stun;
 Buster gB;
 int ghostCount = 0; // how many ghosts are on screen
 Controller gameController = new Controller();
@@ -32,6 +33,7 @@ void setup() {
 	minim = new Minim(this);
 	startLevel(level);
 	gB = new Buster();
+	stun = new StunBeam();
 	loadSfx();
 	loadImages();
 }
@@ -41,6 +43,7 @@ void draw() {
 	int deathToll = 0;
 	background(255);
 	image(backgroundScene, 0, 0);
+	stun.display();
 
 	if (gB.alive) {
 		gB.beam();
@@ -49,6 +52,7 @@ void draw() {
 		gB.move();
 
 		for(int i = 0; i < ghost_.length; i++) {
+			ghost_[i].freezeCheck();
 			if(ghost_[i].dead) {
 				ghost_[i].updateOoze();
 				ghost_[i].updateDeathOoze();
@@ -57,11 +61,15 @@ void draw() {
 			}
 			else {
 				ghost_[i].display();
-				ghost_[i].updateSpawn();
-				ghost_[i].spawnOoze();
-				ghost_[i].updateOoze();
-				ghost_[i].move();
-				ghost_[i].freakout();
+				if(ghost_[i].freeze == false) {
+					println("do someehting");
+					ghost_[i].updateSpawn();
+					ghost_[i].spawnOoze();
+					ghost_[i].move();
+					ghost_[i].freakout();
+				}
+
+
 				ghost_[i].mouseCheck();
 				ghost_[i].updateCounter();
 				ghost_[i].deathWatch();
@@ -159,7 +167,6 @@ void CheckSpawnPower() {
 	powerNumber = random(1000);
 	if(ghostCount >= powerNumber && shield == null) {
 		blueSpawn = true;
-		println(powerNumber);
 	}
 	else {
 		blueSpawn = false;

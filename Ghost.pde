@@ -3,6 +3,7 @@ class Ghost {
 	float x, y, rx, ry, w, speed, centerX, centerY, counter, hoverLimit, spawnCheck, r, prob;
 	boolean hasMouse = false;
 	boolean dead = false;
+	boolean freeze = false;
 	boolean spawnSwitch = false;	
 	OozeDrop ooze;
 	OozeDrop [] finalOoze = new OozeDrop[5];
@@ -121,6 +122,7 @@ class Ghost {
 			}
 			// if the ooze didn't fall to the ground yet then update it
 			else {
+				ooze.freezeCheck();
 				ooze.move();
 				ooze.display();
 			}
@@ -144,11 +146,19 @@ class Ghost {
 				}
 				// if the ooze didn't fall to the ground yet then update it
 				else {
+					finalOoze[i].freezeCheck();
 					finalOoze[i].move();
 					finalOoze[i].display();
 				}
 			}
 		}
 	}
-
+	void freezeCheck() {
+		if(x + w >= stun.x && x + w <= stun.x + stun.w) {
+			freeze = true;
+		}
+		else {
+			freeze = false;
+		}
+	}
 }//
