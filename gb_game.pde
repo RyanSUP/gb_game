@@ -62,9 +62,11 @@ void draw() {
 			else {
 				ghost_[i].display();
 				if(ghost_[i].freeze == false) {
-					println("do someehting");
+				
 					ghost_[i].updateSpawn();
 					ghost_[i].spawnOoze();
+					ghost_[i].updateOoze();
+					ghost_[i].updateDeathOoze();
 					ghost_[i].move();
 					ghost_[i].freakout();
 				}
