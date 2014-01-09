@@ -191,7 +191,7 @@ void CheckSpawnPower() {
 	powerNumber = random(1000);
 	if(ghostCount >= powerNumber && shield == null) {
 		blueSpawn = true;
-		println(powerNumber);
+		//println(powerNumber);
 	}
 	else {
 		blueSpawn = false;

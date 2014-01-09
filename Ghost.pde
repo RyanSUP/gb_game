@@ -140,8 +140,6 @@ class Ghost {
 			}
 			// if the ooze didn't fall to the ground yet then update it
 			else {
-				println(this + " stunned: " + stunned);
-
 				if(stunned) {
 					ooze.display();
 				}
@@ -170,7 +168,6 @@ class Ghost {
 				}
 				// if the ooze didn't fall to the ground yet then update it
 				else {
-						println(this + " stunned: " + stunned);
 					if(stunned) {
 						finalOoze[i].display();
 					}
