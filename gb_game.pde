@@ -28,6 +28,8 @@ StunBeam stunPower;
 boolean blueSpawn = false;
 float powerNumber;
 boolean gameOver = false;
+int shieldTimerCurrent = 0;
+int shieldTimerLimit = 180; // 180 / 60fps = 3 seconds
 
 void setup() {
 	smooth();
@@ -77,10 +79,11 @@ void draw() {
 		activateStun();
 		levelCount();
 		healthBar();
+		shieldTimer();
 		shieldBar();
-		CheckSpawnPower();
-		SpawnBluePower();
-		movePower();		
+		//CheckSpawnPower();
+		//SpawnBluePower();
+		//movePower();		
 		// If all enemies got killed
 		if(deathToll == ghost_.length) {
 			startLevel(level+1);	
@@ -154,6 +157,17 @@ void healthBar() {
 	noFill();
 	stroke(255,255,255, 50);
 	rect(width - 200 - 3, 2, 200, 10);
+}
+
+void shieldTimer() {
+	shieldTimerCurrent += 1;
+	println("shieldTimerCurrent "+shieldTimerCurrent);
+	if(shieldTimerCurrent >= shieldTimerLimit) {
+		shieldTimerCurrent = 0;
+		if(shieldStr < 10) {
+			shieldStr = shieldStr + 1;
+		}
+	}
 }
 
 void shieldBar() {
@@ -261,7 +275,7 @@ void activateStun() {
 
 void stunTimer() {
 	timer += 1;
-	println(timer);
+	//println(timer);
 	if(timer >= 100) {
 		stunPower.unsetStun();
 		stunPower = null;
