@@ -20,13 +20,14 @@ int ghostCount = 0; // how many ghosts are on screen
 Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
 BluePower shield;
-int shieldStr = 10; // strength of shield
-String difficulty = "testing"; // testing, easy, hard
+int shieldStr = 0; // strength of shield
+String difficulty = "easy"; // testing, easy, hard
 int level = 1;
 boolean stunReady = false;
 StunBeam stunPower;
 boolean blueSpawn = false;
 float powerNumber;
+
 void setup() {
 	smooth();
 	frameRate(60);
@@ -107,6 +108,7 @@ void draw() {
 		text("DEFEAT!", width/2, height - 100);
 	}
 }
+
 void keyPressed() {
     gameController.handleKeyPress();
 }
@@ -161,7 +163,7 @@ void shieldBar() {
 		fill(255,255,255);
 		textSize(20);
 		textAlign(RIGHT, TOP);
-		text("PRESS F", width/2, 0);
+		text("SPACEBAR", width/2 - 2, 3);
 	
 		noStroke();
 		fill(255, 255, 255);	
@@ -209,7 +211,7 @@ void movePower(){
 			shield = null;
 		}
 		else if(shield.checkForBuster()) {
-			if(shieldStr < gB.health) {
+			if(shieldStr < 10) {
 				shieldStr = shieldStr + 1;
 			}
 			else {
@@ -224,6 +226,7 @@ void movePower(){
 		}
 	}
 }
+
 void canUseStun() {
 	if(shieldStr >= 5) {
 		stunReady = true;
@@ -232,6 +235,7 @@ void canUseStun() {
 		stunReady = false;
 	}
 }
+
 void loadImages() {
 	oozeImg = loadImage("oozedrop.png");
 	backgroundScene = loadImage("background.png");
@@ -239,11 +243,12 @@ void loadImages() {
 	ghostImg = loadImage("ghost.png");
 	shieldImg = loadImage("shield.png");
 }
+
 void activateStun() {
-    if(stunReady && stunPower == null && key == 'f' || key == 'F') {
-    	shieldStr = shieldStr - 5;
-    	stunPower = new StunBeam();
-    	//println("Stun, ACTIVATE!");
+    if(stunReady && stunPower == null && key == ' ') {
+		shieldStr = shieldStr - 5;
+		stunPower = new StunBeam();
+		//println("Stun, ACTIVATE!");
     }
     if(stunPower != null) {
 		stunPower.display();
@@ -252,6 +257,7 @@ void activateStun() {
 
 	}
 }
+
 void stunTimer() {
 	timer += 1;
 	println(timer);
@@ -260,8 +266,8 @@ void stunTimer() {
 		stunPower = null;
 		timer = 0;
 	}
-
 }
+
 void loadSfx() {
 	sfx = true;
 	// http://www.freesound.org/
