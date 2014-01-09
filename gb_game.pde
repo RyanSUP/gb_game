@@ -30,6 +30,8 @@ float powerNumber;
 boolean gameOver = false;
 int shieldTimerCurrent = 0;
 int shieldTimerLimit = 180; // 180 / 60fps = 3 seconds
+FollowGhost [] follower;
+SideGhost [] sideGuy;
 
 void setup() {
 	smooth();
@@ -52,10 +54,12 @@ void draw() {
 
 	if (gB.alive) {
 		gB.beam();
-		gB.findTarget();	
+	//	gB.findTargetGhost();
+	//	gB.findTargetSide();	
+	//	gB.findTargetFollower();
+		gB.findTarget();
 		gB.display();
 		gB.move();
-
 		for(int i = 0; i < ghost_.length; i++) {
 			if(ghost_[i].dead) {
 				ghost_[i].updateOoze();
@@ -75,6 +79,46 @@ void draw() {
 				ghost_[i].deathWatch();
 			}
 		}
+
+		for(int i = 0; i < follower.length; i++) {
+			if(follower[i].dead) {
+				follower[i].updateOoze();
+				follower[i].updateDeathOoze();
+				follower[i].kill();
+				deathToll += 1;
+			}
+			else {
+				follower[i].display();
+				follower[i].updateSpawn();
+				follower[i].spawnOoze();
+				follower[i].updateOoze();
+				follower[i].move();
+				follower[i].freakout();
+				follower[i].mouseCheck();
+				follower[i].updateCounter();
+				follower[i].deathWatch();
+			}
+		}
+		for(int i = 0; i < sideGuy.length; i++) {
+			if(sideGuy[i].dead) {
+				sideGuy[i].updateOoze();
+				sideGuy[i].updateDeathOoze();
+				sideGuy[i].kill();
+				deathToll += 1;
+			}
+			else {
+				sideGuy[i].display();
+				sideGuy[i].updateSpawn();
+				sideGuy[i].spawnOoze();
+				sideGuy[i].updateOoze();
+				sideGuy[i].move();
+				sideGuy[i].freakout();
+				sideGuy[i].mouseCheck();
+				sideGuy[i].updateCounter();
+				sideGuy[i].deathWatch();
+			}
+		}
+
 		canUseStun();
 		activateStun();
 		levelCount();
@@ -85,7 +129,7 @@ void draw() {
 		//SpawnBluePower();
 		//movePower();		
 		// If all enemies got killed
-		if(deathToll == ghost_.length) {
+		if(deathToll == ghost_.length + sideGuy.length + follower.length) {
 			startLevel(level+1);	
 		}
 
@@ -131,14 +175,20 @@ void startLevel(int levelNumber) {
 	if (levelNumber == 1) {
 		ghostCount = 1;
 		ghost_ = new Ghost[1];
+		follower = new FollowGhost[1];
+		sideGuy = new SideGhost[1];
 	}
 	else if (levelNumber >= 2) {
 		ghostCount = level + 1;
 		ghost_ = new Ghost[level + 1];
+		follower = new FollowGhost[level+1];
+		sideGuy = new SideGhost[level+1];
 	}
 
 	for(int i = 0; i < ghost_.length; i++) {
 		ghost_[i] = new Ghost();
+		follower[i] = new FollowGhost();
+		sideGuy[i] = new SideGhost();
 	}
 
 }

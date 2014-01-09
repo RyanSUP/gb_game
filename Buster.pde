@@ -55,31 +55,73 @@ class Buster {
 		}
 	}
 	void findTarget() { // detects if there is a ghost under a mouse pointer and saves the last ghost
-		int targetID = -1; // save the array pointer to the hovered ghost
-		for(int i = 0; i < ghost_.length; i++) { // loop through all the ghosts
-			if(ghost_[i].hasMouse == true) {
-				targetID = i; // if there is a hovered ghost save it's array pointer
+		int ghostID = -1;
+		int sideGuyID = -1;
+		int followerID = -1; // save the array pointer to the hovered ghost
+		for(int i = 0; i < sideGuy.length; i++) { // loop through all the ghosts
+			if(sideGuy[i].hasMouse == true) {
+				sideGuyID = i; // if there is a hovered ghost save it's array pointer
 			}
 		}
-		if (targetID == -1) { // -1 means there were no hovered ghosts detected
+		for(int i = 0; i < ghost_.length; i++) { // loop through all the ghosts
+			if(ghost_[i].hasMouse == true) {
+				ghostID = i; // if there is a hovered ghost save it's array pointer
+			}
+		}
+		for(int i = 0; i < follower.length; i++) { // loop through all the ghosts
+			if(follower[i].hasMouse == true) {
+				followerID = i; // if there is a hovered ghost save it's array pointer
+			}
+		}
+		if (ghostID == -1 && sideGuyID == -1 && followerID == -1) { // -1 means there were no hovered ghosts detected
 			currentTarget = null;
 			//println("There is no target.");
 		}
 		else {
-			currentTarget = ghost_[targetID]; // set Buster's current target to a ghost
-			//println("This is the Current Target: " + currentTarget);
+			if(sideGuyID > -1) {
+				currentTarget = sideGuy[sideGuyID]; // set Buster's current target to a ghost
+				//println("This is the Current Target: " + currentTarget);
+				if(currentTarget != null) {
+					if(sideGuy[sideGuyID].x > x) {
+						lDirection = false;
+						rDirection = true;
+					}
+					else {
+						rDirection = false;
+						lDirection = true;
+					}
+				}	
+			}
+			else if(ghostID > -1) {
+				currentTarget = ghost_[ghostID]; // set Buster's current target to a ghost
+				//println("This is the Current Target: " + currentTarget);					
+					if(currentTarget != null) {
+						if(ghost_[ghostID].x > x) {
+							lDirection = false;
+							rDirection = true;
+						}
+						else {
+							rDirection = false;
+							lDirection = true;
+						}
+					}	
+			}
+			else if(followerID > -1) {
+				currentTarget = follower[followerID]; // set Buster's current target to a ghost
+				//println("This is the Current Target: " + currentTarget);			
+					if(currentTarget != null) {
+						if(follower[followerID].x > x) {
+							lDirection = false;
+							rDirection = true;
+						}
+						else {
+							rDirection = false;
+							lDirection = true;
+						}
+					}	
+			}
 		}
-		if(targetID > -1 && currentTarget != null) {
-			if(ghost_[targetID].x > x) {
-				lDirection = false;
-				rDirection = true;
-			}
-			else {
-				rDirection = false;
-				lDirection = true;
-			}
-		}	
-	}
+	}	
 	void beam() { // draw beam - more layers = colorful beam
 		if(currentTarget != null) {
 			strokeWeight(10);
