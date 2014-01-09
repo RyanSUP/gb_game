@@ -44,14 +44,14 @@ class Ghost {
 		image(ghostImg,x,y);
 	}
 	void move() {
-		ry = random(-speed, speed); // change speed with G
-		rx = random(-speed, speed); // ^^
-		x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost
-		y = constrain(y + ry, 20, height - gB.w - 100); // ^ same with Y
-
-		centerX = x + 25;
-		centerY = y + 25;
-
+		if(stunned == false) {
+			ry = random(-speed, speed); // change speed with G
+			rx = random(-speed, speed); // ^^
+			x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost
+			y = constrain(y + ry, 20, height - gB.w - 100); // ^ same with Y
+			centerX = x + 25;
+			centerY = y + 25;
+		}
 	}
 	void freakout() { // increases speed if mouse is over the ghost
 		if(hasMouse) {
@@ -102,7 +102,7 @@ class Ghost {
 	}		
 	void spawnOoze() {
 		// spawns the ooze only if the switch is set and only if there isn't already an ooze
-		if(spawnSwitch && ooze == null) {
+		if(spawnSwitch && ooze == null && stunned == false) {
 			ooze = new OozeDrop(centerX, centerY);
 			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
 		}
