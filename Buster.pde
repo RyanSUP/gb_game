@@ -1,5 +1,5 @@
 class Buster {
-	float beamX, x, y, w, beamY;
+	float beamX, x, y, w, beamY, center;
 	boolean hasTarget = false;
 	boolean alive = true;
 	int health = 10;
@@ -14,7 +14,8 @@ class Buster {
 		y = height - w;
 		beamX = x;
 		beamY = y - w/2;
-	} // ----constructor
+		center = x - w/2;
+		} // ----constructor
 	void hit() {
 		if (sfx) busterSfxHit[int(random(2))].trigger();
 		if(shieldStr > 0) {
@@ -45,8 +46,6 @@ class Buster {
 		}
 	}
 	void display() {
-		noStroke();
-		rect(x,y,w,w);
 		if(lDirection) {
 			faceLeft();
 		}
@@ -141,7 +140,7 @@ class Buster {
 	}
 	void faceRight() {
 		beamX = x + w; // update beamX position
-
+		center = x + w/2;
 		if(rDirection) {
 			pushMatrix();
 			scale(-1,1);
@@ -151,6 +150,7 @@ class Buster {
 	}
 	void faceLeft() {
 		beamX = x; // update beamX position
+		center = x + w/2;
 		if(lDirection) {
 			pushMatrix();
 			scale(1,1);

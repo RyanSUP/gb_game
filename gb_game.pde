@@ -54,9 +54,6 @@ void draw() {
 
 	if (gB.alive) {
 		gB.beam();
-	//	gB.findTargetGhost();
-	//	gB.findTargetSide();	
-	//	gB.findTargetFollower();
 		gB.findTarget();
 		gB.display();
 		gB.move();
