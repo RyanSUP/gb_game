@@ -27,6 +27,7 @@ boolean stunReady = false;
 StunBeam stunPower;
 boolean blueSpawn = false;
 float powerNumber;
+boolean gameOver = false;
 
 void setup() {
 	smooth();
@@ -88,8 +89,8 @@ void draw() {
 	}
 	else {
 		int i;
-		if (level > 0) {
-			level = 0;
+		if (gameOver == false) {
+			gameOver = true;
 			ghost_ = new Ghost[80];
 			for(i = 0; i < ghost_.length; i++) {
 				ghost_[i] = new Ghost();
@@ -99,10 +100,13 @@ void draw() {
 			ghost_[i].display();
 			ghost_[i].move();
 		}
+		levelCount();
+		healthBar();
+		shieldBar();
 		noStroke();
 		fill(255,100,100, 100);
 		rect(0,0, width, height);
-		fill(0,0,0);
+		fill(255,255,255);
 		textSize(80);
 		textAlign(CENTER, CENTER);
 		text("DEFEAT!", width/2, height - 100);
