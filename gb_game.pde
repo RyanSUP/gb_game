@@ -191,7 +191,7 @@ void CheckSpawnPower() {
 	powerNumber = random(1000);
 	if(ghostCount >= powerNumber && shield == null) {
 		blueSpawn = true;
-		println(powerNumber);
+		//println(powerNumber);
 	}
 	else {
 		blueSpawn = false;
@@ -205,7 +205,7 @@ void SpawnBluePower() {
 }
 
 void movePower(){
-		if(shield != null) {
+	if(shield != null) {
 		// if the ooze fell past the ground get rid of it so we can make a new one
 		if (shield.y > height) {
 			shield = null;
@@ -213,9 +213,6 @@ void movePower(){
 		else if(shield.checkForBuster()) {
 			if(shieldStr < 10) {
 				shieldStr = shieldStr + 1;
-			}
-			else {
-				shieldStr = shieldStr;
 			}
 			shield = null;
 		}
@@ -228,7 +225,7 @@ void movePower(){
 }
 
 void canUseStun() {
-	if(shieldStr >= 5) {
+	if(shieldStr >= 3) {
 		stunReady = true;
 	}
 	else {
@@ -246,7 +243,7 @@ void loadImages() {
 
 void activateStun() {
     if(stunReady && stunPower == null && key == ' ') {
-		shieldStr = shieldStr - 5;
+		shieldStr = shieldStr - 3;
 		stunPower = new StunBeam();
 		//println("Stun, ACTIVATE!");
     }
