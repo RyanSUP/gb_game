@@ -21,7 +21,7 @@ Controller gameController = new Controller();
 Ghost [] ghost_ = new Ghost[1];
 BluePower shield;
 int shieldStr = 0; // strength of shield
-String difficulty = "testing"; // testing, easy, hard
+String difficulty = "easy"; // testing, easy, hard
 int level = 1;
 boolean stunReady = false;
 StunBeam stunPower;
@@ -205,17 +205,14 @@ void SpawnBluePower() {
 }
 
 void movePower(){
-		if(shield != null) {
+	if(shield != null) {
 		// if the ooze fell past the ground get rid of it so we can make a new one
 		if (shield.y > height) {
 			shield = null;
 		}
 		else if(shield.checkForBuster()) {
-			if(shieldStr < gB.health) {
+			if(shieldStr < 10) {
 				shieldStr = shieldStr + 1;
-			}
-			else {
-				shieldStr = shieldStr;
 			}
 			shield = null;
 		}
