@@ -61,7 +61,7 @@ class Ghost {
             else {
                 ry = random(-speed, speed); // change speed with G
               	y = constrain(y + ry, 20, height - gB.w - 100); // ^ same with Y
-			}    
+	    
 			centerX = x + 25;
 			centerY = y + 25;
 		}
