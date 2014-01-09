@@ -184,7 +184,7 @@ void shieldBar() {
 		text("SPACEBAR", width/2 - 2, 3);
 	
 		noStroke();
-		fill(255, 255, 255);	
+		fill(255,255,255);
 		rect(width - 200 - 3, 15, shieldStr * 20, 10);
 	}
 	else {
