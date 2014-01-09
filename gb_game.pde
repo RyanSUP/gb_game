@@ -257,7 +257,6 @@ void activateStun() {
 
 void stunTimer() {
 	timer += 1;
-	println(timer);
 	if(timer >= 100) {
 		stunPower.unsetStun();
 		stunPower = null;
