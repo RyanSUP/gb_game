@@ -191,7 +191,7 @@ void CheckSpawnPower() {
 	powerNumber = random(1000);
 	if(ghostCount >= powerNumber && shield == null) {
 		blueSpawn = true;
-		println(powerNumber);
+		//println(powerNumber);
 	}
 	else {
 		blueSpawn = false;
@@ -225,7 +225,7 @@ void movePower(){
 }
 
 void canUseStun() {
-	if(shieldStr >= 5) {
+	if(shieldStr >= 3) {
 		stunReady = true;
 	}
 	else {
@@ -243,7 +243,7 @@ void loadImages() {
 
 void activateStun() {
     if(stunReady && stunPower == null && key == ' ') {
-		shieldStr = shieldStr - 5;
+		shieldStr = shieldStr - 3;
 		stunPower = new StunBeam();
 		//println("Stun, ACTIVATE!");
     }

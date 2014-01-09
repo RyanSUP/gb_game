@@ -30,14 +30,14 @@ class Buster {
 	}
 	void move() {
 		if(gameController.isGoingLeft()) {
-			x = constrain(x - 3, 0, width); // move ghost buster left if A is pressed
+			x = constrain(x - 4, 0, width); // move ghost buster left if A is pressed
 			if(currentTarget == null) {
 			rDirection = false;
 			lDirection = true;
 		}
 			}			
 		else if(gameController.isGoingRight()) {
-			x = constrain(x + 3, 0, width - w); // move ghost buster right if D is pressed
+			x = constrain(x + 4, 0, width - w); // move ghost buster right if D is pressed
 			if(currentTarget == null) {
 			lDirection = false;
 			rDirection = true;
