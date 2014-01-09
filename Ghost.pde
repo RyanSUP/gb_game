@@ -2,7 +2,7 @@
 class Ghost {
 	float x, y, rx, ry, w, speed, centerX, centerY, counter, hoverLimit, spawnCheck, r, prob;
 	boolean stunned = false;
-
+	boolean direction = true; 
 	boolean hasMouse = false;
 	boolean dead = false;
 	boolean spawnSwitch = false;	
@@ -41,10 +41,28 @@ class Ghost {
 		}
 	} // constructor -----
 	void display() {
-		image(ghostImg,x,y);
+		facing();
+	}
+	void facing() {
+		if(direction) {
+			image(ghostImg,x,y);
+		}
+		else {
+			pushMatrix();
+			scale(-1,1);
+			image(ghostImg, -x -w, y);
+			popMatrix();
+		
+		}
 	}
 	void move() {
 		if(stunned == false) {
+			if(gB.center > centerX) { //face right
+					direction = false;
+			}
+			else {
+				direction = true;
+			}
 			ry = random(-speed, speed); // change speed with G
 			rx = random(-speed, speed); // ^^
 			x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost

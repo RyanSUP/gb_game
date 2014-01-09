@@ -5,6 +5,12 @@ class FollowGhost extends Ghost {
 	}
 	void move() {
 		if(stunned == false) {
+			if(gB.center > centerX) { //face right
+					direction = false;
+			}
+			else {
+				direction = true;
+			}
 			r = random(1); //random value for proabability
 			prob = 0.9; //probability value
 			if(r < prob) {

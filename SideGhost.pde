@@ -1,18 +1,24 @@
 class SideGhost extends Ghost {
-	boolean direction = false;
+	boolean sideScroll = false;
 	float speed;
 	SideGhost() {
 		speed = 4;
 	}
 	void move() {
 		if(stunned == false) {
-			if(x == width - w) {
+			if(gB.center > centerX) { //face right
+					direction = false;
+			}
+			else {
 				direction = true;
 			}
-			else if(x == 0) {
-				direction = false;
+			if(x == width - w) {
+				sideScroll = true;
 			}
-			if(direction == false) {
+			else if(x == 0) {
+				sideScroll = false;
+			}
+			if(sideScroll == false) {
 				rx = random(0, speed); // ^^
 				x = constrain(x + rx, 0, width - w);
 			}
