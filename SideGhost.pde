@@ -1,6 +1,5 @@
 class SideGhost extends Ghost {
 	boolean sideScroll = false;
-	float speed;
 	SideGhost() {
 		speed = 4;
 	}
