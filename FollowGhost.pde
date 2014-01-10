@@ -1,8 +1,9 @@
 class FollowGhost extends Ghost {
 	
 	FollowGhost() {
-
+		speed = 6;
 	}
+
 	void move() {
 		if(stunned == false) {
 			if(gB.center > centerX) { //face right
@@ -14,7 +15,7 @@ class FollowGhost extends Ghost {
 			r = random(1); //random value for proabability
 			prob = 0.9; //probability value
 			if(r < prob) {
-                if(r < 0.1) {
+                if(r < 0.5) {
                     if(x < gB.x) {
                            rx = random(speed); // ^^
                     }
@@ -32,4 +33,14 @@ class FollowGhost extends Ghost {
 			centerY = y + 25;
 		}
 	}
+
+	void freakout() { // increases speed if mouse is over the ghost
+		if(hasMouse) {
+			speed = 10;
+		}
+		else {
+			speed = 6;
+		}
+	}
+
 }//

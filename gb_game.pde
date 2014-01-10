@@ -75,6 +75,7 @@ void draw() {
 				ghost_[i].updateCounter();
 				ghost_[i].deathWatch();
 			}
+			
 		}
 
 		for(int i = 0; i < follower.length; i++) {

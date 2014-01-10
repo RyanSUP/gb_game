@@ -1,8 +1,11 @@
 class SideGhost extends Ghost {
+
 	boolean sideScroll = false;
+
 	SideGhost() {
-		speed = 4;
+		speed = 3;
 	}
+
 	void move() {
 		if(stunned == false) {
 			if(gB.center > centerX) { //face right
@@ -30,4 +33,14 @@ class SideGhost extends Ghost {
 			centerY = y + 25;
 		}
 	}
+
+	void freakout() { // increases speed if mouse is over the ghost
+		if(hasMouse) {
+			speed = 6;
+		}
+		else {
+			speed = 3;
+		}
+	}
+
 }
