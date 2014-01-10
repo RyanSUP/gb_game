@@ -12,6 +12,7 @@ PImage oozeImg;
 PImage busterGuy;
 PImage backgroundScene;
 PImage ghostImg;
+
 PImage followGhostImg;
 PImage sideGhostImg;
 PImage shieldImg;
