@@ -3,6 +3,7 @@ class SideGhost extends Ghost {
 	boolean sideScroll = false;
 
 	SideGhost() {
+		graphic = loadImage("sideghost.png");
 		speed = 3;
 	}
 

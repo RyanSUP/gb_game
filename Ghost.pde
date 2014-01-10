@@ -8,6 +8,7 @@ class Ghost {
 	boolean spawnSwitch = false;	
 	OozeDrop ooze;
 	OozeDrop [] finalOoze = new OozeDrop[5];
+	PImage graphic = ghostImg;
 	// --- data
 	Ghost() {
 		spawnCheck = random(1, 100);
@@ -18,6 +19,7 @@ class Ghost {
 		centerX = x + 25;
 		centerY = y + 25;
 		hoverLimit = 10;
+		graphic = loadImage("ghost.png");
 		if (level == 1) {
 			if (difficulty == "testing") {
 				hoverLimit = 10;
@@ -46,12 +48,12 @@ class Ghost {
 	}
 	void facing() {
 		if(direction) {
-			image(ghostImg,x,y);
+			image(graphic,x,y);
 		}
 		else {
 			pushMatrix();
 			scale(-1,1);
-			image(ghostImg, -x -w, y);
+			image(graphic, -x -w, y);
 			popMatrix();
 		
 		}
