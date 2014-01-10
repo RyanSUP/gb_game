@@ -43,4 +43,12 @@ class SideGhost extends Ghost {
 		}
 	}
 
+	void spawnOoze() {
+		// spawns the ooze only if the switch is set and only if there isn't already an ooze
+		if(spawnSwitch && ooze == null && stunned == false) {
+			ooze = new OozeDropSideGhost(centerX, centerY);
+			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
+		}
+	}
+
 }
