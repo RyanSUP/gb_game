@@ -1,7 +1,6 @@
 class FollowGhost extends Ghost {
 	
 	FollowGhost() {
-		graphic = loadImage("followghost.png");
 		speed = 6;
 	}
 
