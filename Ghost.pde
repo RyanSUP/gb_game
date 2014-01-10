@@ -88,7 +88,7 @@ class Ghost {
 	}
 	void freakout() { // increases speed if mouse is over the ghost
 		if(hasMouse) {
-			speed = 10;
+			speed = 6;
 		}
 		else {
 			speed = 3;
