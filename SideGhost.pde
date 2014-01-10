@@ -3,20 +3,10 @@ class SideGhost extends Ghost {
 	boolean sideScroll = false;
 
 	SideGhost() {
+		type = "side";
 		speed = 3;
 	}
-	void facing() {
-		if(direction) {
-			image(sideGhostImg,x,y);
-		}
-		else {
-			pushMatrix();
-			scale(-1,1);
-			image(sideGhostImg, -x -w, y);
-			popMatrix();
-		
-		}
-	}
+
 	void move() {
 		if(stunned == false && hasMouse == false) {
 			if(gB.center > centerX) { //face right
@@ -56,14 +46,6 @@ class SideGhost extends Ghost {
 		}
 		else {
 			speed = 3;
-		}
-	}
-
-	void spawnOoze() {
-		// spawns the ooze only if the switch is set and only if there isn't already an ooze
-		if(spawnSwitch && ooze == null && stunned == false) {
-			ooze = new OozeDropSideGhost(centerX, centerY);
-			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
 		}
 	}
 

@@ -1,6 +1,10 @@
 class OozeDrop {
+
 	float x, y, rx, ry, w, speed, gravity;
-	OozeDrop (float parentX, float parentY) {
+	String type;
+
+	OozeDrop (String parentType, float parentX, float parentY) {
+		type = parentType;
 		x = parentX;
 		y = parentY;
 		w = random(15, 25);
@@ -8,7 +12,15 @@ class OozeDrop {
 		gravity = .03;
 	}
 	void display() {
-		image(oozeImg, x, y, w, w);
+		if (type == "normal") {
+			image(oozeImg, x, y, w, w);
+		}
+		else if (type == "follow") {
+			image(oozeImgFollowGhost, x, y, w, w);
+		}
+		else if (type == "side") {
+			image(oozeImgSideGhost, x, y, w, w);
+		}
 	}
 	void move() {
 		speed = speed + gravity;

@@ -1,20 +1,10 @@
 class FollowGhost extends Ghost {
 	
 	FollowGhost() {
+		type = "follow";
 		speed = 6;
 	}
-	void facing() {
-		if(direction) {
-			image(followGhostImg,x,y);
-		}
-		else {
-			pushMatrix();
-			scale(-1,1);
-			image(followGhostImg, -x -w, y);
-			popMatrix();
-		
-		}
-	}
+
 	void move() {
 		if(stunned == false && hasMouse == false) {
 			if(gB.center > centerX) { //face right
@@ -58,14 +48,6 @@ class FollowGhost extends Ghost {
 		}
 		else {
 			speed = 6;
-		}
-	}
-
-	void spawnOoze() {
-		// spawns the ooze only if the switch is set and only if there isn't already an ooze
-		if(spawnSwitch && ooze == null && stunned == false) {
-			ooze = new OozeDropFollowGhost(centerX, centerY);
-			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
 		}
 	}
 

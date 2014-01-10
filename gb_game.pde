@@ -308,11 +308,11 @@ void loadImages() {
 	backgroundScene = loadImage("background.png");
 	busterGuy = loadImage("buster.png");
 	ghostImg = loadImage("ghost.png");
+	followGhostImg = loadImage("followghost.png");
 	sideGhostImg = loadImage("sideghost.png");
 	oozeImg = loadImage("oozedrop.png");
 	oozeImgFollowGhost = loadImage("oozedrop-followghost.png");
 	oozeImgSideGhost = loadImage("oozedrop-sideghost.png");
-	followGhostImg = loadImage("followghost.png");
 	shieldImg = loadImage("shield.png");
 }
 
