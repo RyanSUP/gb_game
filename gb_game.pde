@@ -8,12 +8,14 @@ AudioSample busterSfxShield;
 AudioSample busterSfxDeath;
 boolean sfx;
 
-PImage oozeImg;
 PImage busterGuy;
 PImage backgroundScene;
 PImage ghostImg;
 
 PImage followGhostImg;
+PImage oozeImg;
+PImage oozeImgFollowGhost;
+PImage oozeImgSideGhost;
 PImage sideGhostImg;
 PImage shieldImg;
 
@@ -303,12 +305,14 @@ void canUseStun() {
 }
 
 void loadImages() {
-	oozeImg = loadImage("oozedrop.png");
 	backgroundScene = loadImage("background.png");
 	busterGuy = loadImage("buster.png");
 	ghostImg = loadImage("ghost.png");
-	sideGhostImg = loadImage("sideghost.png");
 	followGhostImg = loadImage("followghost.png");
+	sideGhostImg = loadImage("sideghost.png");
+	oozeImg = loadImage("oozedrop.png");
+	oozeImgFollowGhost = loadImage("oozedrop-followghost.png");
+	oozeImgSideGhost = loadImage("oozedrop-sideghost.png");
 	shieldImg = loadImage("shield.png");
 }
 

@@ -5,11 +5,13 @@ class Ghost {
 	boolean direction = true; 
 	boolean hasMouse = false;
 	boolean dead = false;
-	boolean spawnSwitch = false;	
+	boolean spawnSwitch = false;
+	String type;
 	OozeDrop ooze;
 	OozeDrop [] finalOoze = new OozeDrop[5];
 	// --- data
 	Ghost() {
+		type = "normal";
 		spawnCheck = random(1, 100);
 		speed = 3; //ghost speed
 		w = 50;
@@ -46,15 +48,27 @@ class Ghost {
 	}
 	void facing() {
 		if(direction) {
-			image(ghostImg,x,y);
+			image(getImg(),x,y);
 		}
 		else {
 			pushMatrix();
 			scale(-1,1);
-			image(ghostImg, -x -w, y);
+			image(getImg(), -x -w, y);
 			popMatrix();
 		
 		}
+	}
+	PImage getImg() {
+		if (type == "normal") {
+			return ghostImg;
+		}
+		if (type == "follow") {
+			return followGhostImg;
+		}
+		if (type == "side") {
+			return sideGhostImg;
+		}
+		return ghostImg;
 	}
 	void move() {
 		if(stunned == false) {
@@ -122,7 +136,7 @@ class Ghost {
 	void spawnOoze() {
 		// spawns the ooze only if the switch is set and only if there isn't already an ooze
 		if(spawnSwitch && ooze == null && stunned == false) {
-			ooze = new OozeDrop(centerX, centerY);
+			ooze = new OozeDrop(type, centerX, centerY);
 			if (sfx) oozeSfxDropOoze[int(random(3))].trigger();
 		}
 	}
@@ -150,7 +164,7 @@ class Ghost {
 	}
 	void spawnDeathOoze() {
 		for(int i = 0; i < finalOoze.length; i++) {
-			finalOoze[i] = new OozeDrop(centerX + int(random(-35, 35)), centerY + int(random(-35, 35)));
+			finalOoze[i] = new OozeDrop(type, centerX + int(random(-35, 35)), centerY + int(random(-35, 35)));
 		}
 	
 	}

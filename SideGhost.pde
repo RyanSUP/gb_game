@@ -3,20 +3,10 @@ class SideGhost extends Ghost {
 	boolean sideScroll = false;
 
 	SideGhost() {
+		type = "side";
 		speed = 3;
 	}
-	void facing() {
-		if(direction) {
-			image(sideGhostImg,x,y);
-		}
-		else {
-			pushMatrix();
-			scale(-1,1);
-			image(sideGhostImg, -x -w, y);
-			popMatrix();
-		
-		}
-	}
+
 	void move() {
 		if(stunned == false && hasMouse == false) {
 			if(gB.center > centerX) { //face right

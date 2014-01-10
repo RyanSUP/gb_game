@@ -1,20 +1,10 @@
 class FollowGhost extends Ghost {
 	
 	FollowGhost() {
+		type = "follow";
 		speed = 6;
 	}
-	void facing() {
-		if(direction) {
-			image(followGhostImg,x,y);
-		}
-		else {
-			pushMatrix();
-			scale(-1,1);
-			image(followGhostImg, -x -w, y);
-			popMatrix();
-		
-		}
-	}
+
 	void move() {
 		if(stunned == false && hasMouse == false) {
 			if(gB.center > centerX) { //face right
