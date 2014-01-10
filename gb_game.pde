@@ -11,6 +11,7 @@ boolean sfx;
 PImage busterGuy;
 PImage backgroundScene;
 PImage ghostImg;
+
 PImage followGhostImg;
 PImage oozeImg;
 PImage oozeImgFollowGhost;

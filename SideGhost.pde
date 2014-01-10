@@ -5,9 +5,20 @@ class SideGhost extends Ghost {
 	SideGhost() {
 		speed = 3;
 	}
-
+	void facing() {
+		if(direction) {
+			image(sideGhostImg,x,y);
+		}
+		else {
+			pushMatrix();
+			scale(-1,1);
+			image(sideGhostImg, -x -w, y);
+			popMatrix();
+		
+		}
+	}
 	void move() {
-		if(stunned == false) {
+		if(stunned == false && hasMouse == false) {
 			if(gB.center > centerX) { //face right
 					direction = false;
 			}
@@ -28,10 +39,15 @@ class SideGhost extends Ghost {
 				rx = random(-speed, 0); // ^^
 				x = constrain(x + rx, 0, width - w);
 			}
-
+		}
+		else if(stunned == false && hasMouse == true) {
+			ry = random(-speed, speed); // change speed with G
+			rx = random(-speed, speed); // ^^
+			x = constrain(x + rx, 0, width - w);
+			y = constrain(y + ry, 20, height - gB.w - 100);
+		}	
 			centerX = x + 25;
 			centerY = y + 25;
-		}
 	}
 
 	void freakout() { // increases speed if mouse is over the ghost
