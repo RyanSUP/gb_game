@@ -2,6 +2,7 @@ class OozeDrop {
 
 	float x, y, rx, ry, w, speed, gravity;
 	String type;
+	boolean stunned = false;
 
 	OozeDrop (String parentType, float parentX, float parentY) {
 		type = parentType;
@@ -23,9 +24,13 @@ class OozeDrop {
 		}
 	}
 	void move() {
-		speed = speed + gravity;
-		y = y + speed;
-
+		if(stunned == false) {
+			speed = speed + gravity;
+			y = y + speed;
+		}
+		else {
+			y = y;
+		}
 	}
 	boolean busterCheck() {
 		if(x + w >= gB.x && x <= gB.x + gB.w && y + w >= gB.y) {
