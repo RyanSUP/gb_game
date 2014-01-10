@@ -17,6 +17,9 @@ class Ghost {
 		w = 50;
 		x = random(0, width);
 		y = random(0, height/2);
+		if (gameOver) {
+			y = random(0, height);
+		}
 		centerX = x + 25;
 		centerY = y + 25;
 		hoverLimit = 10;
@@ -73,7 +76,7 @@ class Ghost {
 	void move() {
 		if(stunned == false) {
 			if(gB.center > centerX) { //face right
-					direction = false;
+				direction = false;
 			}
 			else {
 				direction = true;
@@ -81,7 +84,12 @@ class Ghost {
 			ry = random(-speed, speed); // change speed with G
 			rx = random(-speed, speed); // ^^
 			x = constrain(x + rx, 0, width - w); //gets a random value from ry and rx, addes it to the x coordinate of ghost
-			y = constrain(y + ry, 20, height - gB.w - 100); // ^ same with Y
+			if (!gameOver) {
+				y = constrain(y + ry, 20, height - gB.w - 100); // ^ same with Y
+			}
+			else {
+				y = constrain(y + ry, 20, height - w);
+			}
 			centerX = x + 25;
 			centerY = y + 25;
 		}
