@@ -1,8 +1,10 @@
 class FollowGhost extends Ghost {
 	
 	FollowGhost() {
-
+		graphic = loadImage("followghost.png");
+		speed = 6;
 	}
+
 	void move() {
 		if(stunned == false) {
 			if(gB.center > centerX) { //face right
@@ -32,4 +34,14 @@ class FollowGhost extends Ghost {
 			centerY = y + 25;
 		}
 	}
+
+	void freakout() { // increases speed if mouse is over the ghost
+		if(hasMouse) {
+			speed = 10;
+		}
+		else {
+			speed = 6;
+		}
+	}
+
 }//

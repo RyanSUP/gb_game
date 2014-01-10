@@ -12,6 +12,8 @@ PImage oozeImg;
 PImage busterGuy;
 PImage backgroundScene;
 PImage ghostImg;
+PImage followGhostImg;
+PImage sideGhostImg;
 PImage shieldImg;
 
 float timer = 0; //timer for freeze ray
@@ -75,6 +77,7 @@ void draw() {
 				ghost_[i].updateCounter();
 				ghost_[i].deathWatch();
 			}
+			
 		}
 
 		for(int i = 0; i < follower.length; i++) {
@@ -303,6 +306,8 @@ void loadImages() {
 	backgroundScene = loadImage("background.png");
 	busterGuy = loadImage("buster.png");
 	ghostImg = loadImage("ghost.png");
+	sideGhostImg = loadImage("sideghost.png");
+	followGhostImg = loadImage("followghost.png");
 	shieldImg = loadImage("shield.png");
 }
 
