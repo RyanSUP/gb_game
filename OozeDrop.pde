@@ -7,7 +7,7 @@ class OozeDrop {
 		type = parentType;
 		x = parentX;
 		y = parentY;
-		w = random(15, 25);
+		w = random(10, 20);
 		speed = w/4;
 		gravity = .03;
 	}
