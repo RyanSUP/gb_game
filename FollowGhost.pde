@@ -14,7 +14,7 @@ class FollowGhost extends Ghost {
 			r = random(1); //random value for proabability
 			prob = 0.9; //probability value
 			if(r < prob) {
-                if(r < 0.1) {
+                if(r < 0.5) {
                     if(x < gB.x) {
                            rx = random(speed); // ^^
                     }
