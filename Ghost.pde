@@ -11,12 +11,13 @@ class Ghost {
 	// --- data
 	Ghost() {
 		spawnCheck = random(1, 100);
-		speed = 6; //ghost speed
+		speed = 3; //ghost speed
 		w = 50;
 		x = random(0, width);
 		y = random(0, height/2);
 		centerX = x + 25;
 		centerY = y + 25;
+		hoverLimit = 10;
 		if (level == 1) {
 			if (difficulty == "testing") {
 				hoverLimit = 10;
@@ -73,10 +74,10 @@ class Ghost {
 	}
 	void freakout() { // increases speed if mouse is over the ghost
 		if(hasMouse) {
-			speed = 12;
+			speed = 10;
 		}
 		else {
-			speed = 6;
+			speed = 3;
 		}
 	}
 	void mouseCheck() {
