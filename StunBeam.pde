@@ -15,17 +15,17 @@ class StunBeam {
 	}
 	void setStun() {
 		for(int i = 0; i < ghost_.length; i++) {
-			if(ghost_[i].x + ghost_[i].w >= x && ghost_[i].x + ghost_[i].w <= x+w) {
+			if(ghost_[i].centerX >= x && ghost_[i].centerX + ghost_[i].w/2 <= x+w) {
 				ghost_[i].stunned = true;
 			}	
 		}
 		for(int i = 0; i < follower.length; i++) {
-			if(follower[i].x + follower[i].w >= x && follower[i].x + follower[i].w <= x+w) {
+			if(follower[i].centerX >= x && follower[i].centerX + follower[i].w/2 <= x+w) {
 				follower[i].stunned = true;
 			}	
 		}
 		for(int i = 0; i < sideGuy.length; i++) {
-			if(sideGuy[i].x + sideGuy[i].w >= x && sideGuy[i].x + sideGuy[i].w <= x+w) {
+			if(sideGuy[i].centerX >= x && sideGuy[i].centerX + sideGuy[i].w/2 <= x+w) {
 				sideGuy[i].stunned = true;
 			}	
 		}
