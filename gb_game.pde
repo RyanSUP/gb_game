@@ -141,9 +141,10 @@ void draw() {
 		int i;
 		if (gameOver == false) {
 			gameOver = true;
-			ghost_ = new Ghost[80];
+			ghost_ = new Ghost[120];
 			for(i = 0; i < ghost_.length; i++) {
 				ghost_[i] = new Ghost();
+				ghost_[i].direction = (int(random(1)) == 0) ? true : false;
 			}
 		}
 		for(i = 0; i < ghost_.length; i++) {
@@ -154,12 +155,12 @@ void draw() {
 		healthBar();
 		shieldBar();
 		noStroke();
-		fill(255,100,100, 100);
+		fill(255,100,100, 120);
 		rect(0,0, width, height);
 		fill(255,255,255);
-		textSize(80);
+		textSize(20);
 		textAlign(CENTER, CENTER);
-		text("DEFEAT!", width/2, height - 100);
+		text("GAME OVER", width/2, height/2);
 	}
 }
 
