@@ -39,11 +39,11 @@ FollowGhost [] follower;
 SideGhost [] sideGuy;
 
 void setup() {
+        frame.setIconImage(getToolkit().getImage("ghost_buster.ico"));
 	smooth();
 	frameRate(60);
 	size(500, 500);
 	frame.setTitle("GHOST BUSTER");
-	frame.setIconImage( getToolkit().getImage("ghost_buster.ico") );
 	minim = new Minim(this);
 	startLevel(level);
 	gB = new Buster();
@@ -215,7 +215,7 @@ void healthBar() {
 
 void shieldTimer() {
 	shieldTimerCurrent += 1;
-	println("shieldTimerCurrent "+shieldTimerCurrent);
+	//println("shieldTimerCurrent "+shieldTimerCurrent);
 	if(shieldTimerCurrent >= shieldTimerLimit) {
 		shieldTimerCurrent = 0;
 		if(shieldStr < 10) {
@@ -318,16 +318,20 @@ void loadImages() {
 }
 
 void activateStun() {
-    if(stunReady && stunPower == null && key == ' ') {
-		shieldStr = shieldStr - 3;
-		stunPower = new StunBeam();
-		//println("Stun, ACTIVATE!");
-    }
-    if(stunPower != null) {
+	println(keyPressed);
+	if(keyPressed) {
+		if(key == ' ') {
+		    if(stunReady && stunPower == null) {
+				shieldStr = shieldStr - 3;
+				stunPower = new StunBeam();
+				//println("Stun, ACTIVATE!");
+		    }
+		}
+	} 
+	if(stunPower != null) {
 		stunPower.display();
 		stunPower.setStun();
     	stunTimer();
-
 	}
 }
 
